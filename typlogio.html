@@ -216,17 +216,16 @@ window.MathJax = {
       <span class="desc">Η τιμή που εμφανίζεται με τη μεγαλύτερη συχνότητα. Μπορεί να υπάρχουν περισσότερες (bimodal, multimodal) ή καμία.</span>
     </div>
     <div class="ftitle">Για ομαδοποιημένα — βήματα</div>
+    <div class="ftitle" style="margin-top:8px;color:var(--amber)">① Βρες την κλάση με τη μεγαλύτερη συχνότητα → επικρατούσα κλάση</div>
+    <div class="ftitle" style="color:var(--amber)">② Υπολόγισε τις διαφορές από τις γειτονικές κλάσεις</div>
     <div class="fb">
-      <span class="math">\[ \textbf{Βήμα 1:} \quad \text{Βρες κλάση με } \max(\nu_i) \to \text{επικρατούσα κλάση} \]</span>
-      <span class="desc">Κοιτάμε τη στήλη συχνοτήτων και εντοπίζουμε ποια κλάση έχει τη μεγαλύτερη.</span>
+      <span class="math">\[ d_1 = \nu_{mo} - \nu_{mo-1} \qquad d_2 = \nu_{mo} - \nu_{mo+1} \]</span>
+      <span class="desc">\(\nu_{mo}\) = συχν. επικρατούσας · \(\nu_{mo-1}\) = συχν. προηγούμενης · \(\nu_{mo+1}\) = συχν. επόμενης</span>
     </div>
+    <div class="ftitle" style="color:var(--amber)">③ Εφάρμοσε τον τύπο</div>
     <div class="fb">
-      <span class="math">\[ \textbf{Βήμα 2:} \quad d_1 = \nu_{mo} - \nu_{mo-1} \quad d_2 = \nu_{mo} - \nu_{mo+1} \]</span>
-      <span class="desc">\(\nu_{mo}\) = συχν. επικρατούσας · \(\nu_{mo-1}\) = συχν. προηγούμενης · \(\nu_{mo+1}\) = συχν. επόμενης κλάσης.</span>
-    </div>
-    <div class="fb">
-      <span class="math">\[ \textbf{Βήμα 3:} \quad M_o = L + \frac{d_1}{d_1 + d_2} \cdot c \]</span>
-      <span class="desc">\(L\) = κάτω όριο επικρατούσας κλάσης · \(c\) = πλάτος κλάσης.</span>
+      <span class="math">\[ M_o = L + \frac{d_1}{d_1 + d_2} \cdot c \]</span>
+      <span class="desc">\(L\) = κάτω όριο επικρατούσας κλάσης · \(c\) = πλάτος κλάσης</span>
     </div>
   </div>
 
