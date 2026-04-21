@@ -51,7 +51,7 @@ window.MathJax = {
   /* GRID & CARD */
   .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 14px;
     align-items: start;
   }
@@ -116,8 +116,10 @@ window.MathJax = {
 
   /* STEPS */
   ol.steps { list-style: none; counter-reset: s; margin: 8px 0; }
-  ol.steps li { counter-increment: s; display: flex; gap: 10px; margin: 8px 0; font-size: 12px; color: var(--text2); line-height: 1.55; align-items: flex-start; }
-  ol.steps li::before { content: counter(s); background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-bd); border-radius: 50%; width: 22px; height: 22px; min-width: 22px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; margin-top: 1px; }
+  ol.steps li { counter-increment: s; display: flex; gap: 10px; margin: 8px 0; font-size: 12px; color: var(--text2); line-height: 1.6; align-items: flex-start; }
+  ol.steps li span { flex: 1; min-width: 0; word-break: break-word; overflow-wrap: anywhere; }
+  ol.steps li::before { content: counter(s); background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-bd); border-radius: 50%; width: 22px; height: 22px; min-width: 22px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; margin-top: 2px; flex-shrink: 0; }
+  ol.steps code { font-family: var(--mono, monospace); font-size: 11.5px; background: var(--bg3); color: var(--purple); border: 1px solid var(--purple-bd); border-radius: 3px; padding: 1px 5px; white-space: normal; word-break: break-all; }
 
   /* MathJax overrides */
   mjx-container { color: var(--text) !important; }
@@ -126,7 +128,7 @@ window.MathJax = {
   .footer { text-align: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--text3); font-size: 12px; }
 
   @media (max-width: 900px) {
-    .grid { grid-template-columns: repeat(2, 1fr); }
+    .grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
   }
   @media (max-width: 560px) {
     .grid { grid-template-columns: 1fr; }
@@ -622,20 +624,62 @@ window.MathJax = {
 
 <div class="grid wide" style="margin-top:14px">
   <div class="card purple">
-    <div class="lbl">Μεθοδολογία — βήματα επίλυσης</div>
-    <ol class="steps">
-      <li>Κατασκεύασε πίνακα με στήλες: \(x_i,\; y_i,\; x_i^2,\; y_i^2,\; x_i y_i\). Υπολόγισε τα αθροίσματά τους.</li>
-      <li>Υπολόγισε τους μέσους: \(\bar{x} = \dfrac{\sum x_i}{n}\) και \(\bar{y} = \dfrac{\sum y_i}{n}\).</li>
-      <li>Υπολόγισε: \(S_{xx},\; S_{yy},\; S_{xy}\) από τους τύπους παραπάνω.</li>
-      <li>Βρες κλίση \(\beta_1 = S_{xy}/S_{xx}\) και σταθερά \(\beta_0 = \bar{y} - \beta_1\bar{x}\).</li>
-      <li>Γράψε την εξίσωση: \(\hat{y} = \beta_0 + \beta_1 x\).</li>
-      <li>Υπολόγισε \(r = S_{xy}/\sqrt{S_{xx}\cdot S_{yy}}\) και \(R^2 = r^2\). Σχολίασε ισχύ και κατεύθυνση.</li>
-      <li>Για πρόβλεψη: αντικατέστησε \(x_0\) στην εξίσωση: \(\hat{y}_0 = \beta_0 + \beta_1 x_0\). Μόνο εντός του εύρους των δεδομένων.</li>
-    </ol>
+    <div class="lbl">Μεθοδολογία — βήματα επίλυσης παλινδρόμησης</div>
+
+    <div class="ftitle" style="color:var(--purple)">① Κατασκεύασε τον πίνακα εργασίας</div>
+    <div class="fb">
+      <span class="math">\[ x_i,\quad y_i,\quad x_i^2,\quad y_i^2,\quad x_i y_i \]</span>
+      <span class="desc">Φτιάξε πίνακα με αυτές τις πέντε στήλες και υπολόγισε τα αθροίσματά τους.</span>
+    </div>
+
+    <div class="ftitle" style="color:var(--purple)">② Υπολόγισε τους μέσους</div>
+    <div class="fb">
+      <span class="math">\[ \bar{x} = \frac{\sum x_i}{n} \qquad \bar{y} = \frac{\sum y_i}{n} \]</span>
+      <span class="desc">Άθροισμα κάθε στήλης διαιρεμένο με το πλήθος παρατηρήσεων \(n\).</span>
+    </div>
+
+    <div class="ftitle" style="color:var(--purple)">③ Υπολόγισε τα βοηθητικά αθροίσματα</div>
+    <div class="fb">
+      <span class="math">\[ S_{xx} = \sum x_i^2 - \frac{(\sum x_i)^2}{n} \]</span>
+      <span class="desc">Μεταβλητότητα του \(x\).</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ S_{yy} = \sum y_i^2 - \frac{(\sum y_i)^2}{n} \]</span>
+      <span class="desc">Μεταβλητότητα του \(y\) — χρειάζεται μόνο για τον \(r\).</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ S_{xy} = \sum x_i y_i - \frac{(\sum x_i)(\sum y_i)}{n} \]</span>
+      <span class="desc">Συνδιακύμανση \(x\) και \(y\).</span>
+    </div>
+
+    <div class="ftitle" style="color:var(--purple)">④ Υπολόγισε τους συντελεστές</div>
+    <div class="fb">
+      <span class="math">\[ \beta_1 = \frac{S_{xy}}{S_{xx}} \qquad \beta_0 = \bar{y} - \beta_1 \cdot \bar{x} \]</span>
+      <span class="desc">Πρώτα κλίση \(\beta_1\), μετά σταθερά \(\beta_0\). Η σειρά έχει σημασία.</span>
+    </div>
+
+    <div class="ftitle" style="color:var(--purple)">⑤ Γράψε την εξίσωση</div>
+    <div class="fb">
+      <span class="math">\[ \hat{y} = \beta_0 + \beta_1 \cdot x \]</span>
+      <span class="desc">Έλεγχος: η ευθεία πρέπει να διέρχεται από το \((\bar{x},\, \bar{y})\).</span>
+    </div>
+
+    <div class="ftitle" style="color:var(--purple)">⑥ Υπολόγισε συσχέτιση και προσδιορισμό</div>
+    <div class="fb">
+      <span class="math">\[ r = \frac{S_{xy}}{\sqrt{S_{xx} \cdot S_{yy}}} \qquad R^2 = r^2 \]</span>
+      <span class="desc">Σχολίασε ισχύ (\(|r|{<}0.3\) αδύναμη · \(0.3{-}0.7\) μέτρια · \({>}0.7\) ισχυρή) και κατεύθυνση (πρόσημο).</span>
+    </div>
+
+    <div class="ftitle" style="color:var(--purple)">⑦ Πρόβλεψη για νέο \(x_0\)</div>
+    <div class="fb">
+      <span class="math">\[ \hat{y}_0 = \beta_0 + \beta_1 \cdot x_0 \]</span>
+      <span class="desc">Αντικατέστησε \(x_0\) στην εξίσωση. Έγκυρο μόνο εντός του εύρους των δεδομένων.</span>
+    </div>
+
   </div>
 </div>
 
-<div class="footer">Πιθανότητες &amp; Στατιστική· Τυπολόγιο εξετάσεων</div>
+<div class="footer">Πιθανότητες &amp; Στατιστική · Τυπολόγιο εξετάσεων</div>
 
 </div>
 </body>
