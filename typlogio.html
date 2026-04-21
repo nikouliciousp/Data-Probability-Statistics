@@ -94,8 +94,8 @@ window.MathJax = {
   .sep { height: 1px; background: var(--border); margin: 12px 0; }
 
   /* VARS */
-  .vars { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
-  .v { font-size: 11px; padding: 2px 9px; border-radius: 4px; font-weight: 500; border: 1px solid; }
+  .vars { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 6px; margin-top: 10px; }
+  .v { font-size: 11.5px; padding: 5px 10px; border-radius: 5px; font-weight: 500; border: 1px solid; line-height: 1.4; display: flex; align-items: center; gap: 4px; }
   .v.b { background: var(--blue-bg);   color: var(--blue);   border-color: var(--blue-bd); }
   .v.t { background: var(--teal-bg);   color: var(--teal);   border-color: var(--teal-bd); }
   .v.a { background: var(--amber-bg);  color: var(--amber);  border-color: var(--amber-bd); }
@@ -240,12 +240,19 @@ window.MathJax = {
     <div class="ftitle" style="color:var(--blue)">② Υπολόγισε τις διαφορές από τις γειτονικές κλάσεις</div>
     <div class="fb">
       <span class="math">\[ d_1 = \nu_{mo} - \nu_{mo-1} \qquad d_2 = \nu_{mo} - \nu_{mo+1} \]</span>
-      <span class="desc">\(\nu_{mo}\) = συχν. επικρατούσας · \(\nu_{mo-1}\) = συχν. προηγούμενης · \(\nu_{mo+1}\) = συχν. επόμενης</span>
+    </div>
+    <div class="vars">
+      <span class="v b">\(\nu_{mo}\) = συχν. επικρατούσας</span>
+      <span class="v b">\(\nu_{mo-1}\) = συχν. προηγούμενης</span>
+      <span class="v b">\(\nu_{mo+1}\) = συχν. επόμενης</span>
     </div>
     <div class="ftitle" style="color:var(--blue)">③ Εφάρμοσε τον τύπο</div>
     <div class="fb">
       <span class="math">\[ M_o = L + \frac{d_1}{d_1 + d_2} \cdot c \]</span>
-      <span class="desc">\(L\) = κάτω όριο επικρατούσας κλάσης · \(c\) = πλάτος κλάσης</span>
+    </div>
+    <div class="vars">
+      <span class="v b">\(L\) = κάτω όριο επικρατούσας κλάσης</span>
+      <span class="v b">\(c\) = πλάτος κλάσης</span>
     </div>
   </div>
 
@@ -269,7 +276,13 @@ window.MathJax = {
       <span class="math">\[ c = \frac{R}{k} \]</span>
       <span class="desc">Εύρος δεδομένων διαιρεμένο με τον αριθμό κλάσεων \(k\). Στρογγυλοποιούμε πάντα προς τα άνω.</span>
     </div>
-    <div class="note">Επιλογή \(k\): \(n{<}20 \to k{=}5\) · \(n{=}20{-}50 \to k{=}6\) · \(n{=}50{-}100 \to k{=}7\) · \(n{=}100{-}200 \to k{=}8\) · \(n{\geq}1000 \to k{=}12\)</div>
+    <div class="vars">
+      <span class="v t">\(n < 20\) → \(k = 5\)</span>
+      <span class="v t">\(n = 20{-}50\) → \(k = 6\)</span>
+      <span class="v t">\(n = 50{-}100\) → \(k = 7\)</span>
+      <span class="v t">\(n = 100{-}200\) → \(k = 8\)</span>
+      <span class="v t">\(n \geq 1000\) → \(k = 12\)</span>
+    </div>
   </div>
 
   <div class="card teal">
@@ -603,7 +616,12 @@ window.MathJax = {
       <div class="si"><span class="sv" style="color:var(--text2)">\(0\)</span><span class="sl">καμία γραμμική</span></div>
       <div class="si"><span class="sv" style="color:var(--green)">\(+1\)</span><span class="sl">τέλεια θετική</span></div>
     </div>
-    <div class="note">\(|r| < 0.3\) αδύναμη · \(0.3{-}0.7\) μέτρια · \(> 0.7\) ισχυρή · \(r = \pm 1\) τέλεια γραμμική</div>
+    <div class="vars">
+      <span class="v p">\(|r| < 0.3\) = αδύναμη</span>
+      <span class="v p">\(0.3 \leq |r| < 0.7\) = μέτρια</span>
+      <span class="v p">\(|r| \geq 0.7\) = ισχυρή</span>
+      <span class="v p">\(|r| = 1\) = τέλεια γραμμική</span>
+    </div>
     <div class="warn">Συσχέτιση ≠ αιτιότητα. Ακόμα και \(r = 1\) δεν αποδεικνύει ότι το \(x\) προκαλεί το \(y\).</div>
   </div>
 
