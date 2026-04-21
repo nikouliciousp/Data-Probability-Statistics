@@ -375,6 +375,32 @@ window.MathJax = {
     </div>
   </div>
 
+  <div class="card amber">
+    <div class="lbl">Εκατοστημόρια — Percentiles</div>
+    <div class="fb">
+      <span class="math">\[ \text{θέση } P_k = \frac{k \cdot n}{100} \]</span>
+      <span class="desc">Η θέση του \(k\)-οστού εκατοστημορίου στη ταξινομημένη σειρά. Το \(k\)% των παρατηρήσεων είναι κάτω από αυτό.</span>
+    </div>
+    <div class="ftitle">Παρεμβολή για ομαδοποιημένα δεδομένα</div>
+    <div class="fb">
+      <span class="math">\[ P_k = L + \frac{\dfrac{k \cdot n}{100} - F_{i-1}}{\nu_i} \cdot c \]</span>
+      <span class="desc">Ίδια λογική παρεμβολής με τεταρτημόρια και διάμεσο — αλλάζει μόνο ο παράγοντας \(k/100\) αντί για \(i/4\).</span>
+    </div>
+    <div class="vars">
+      <span class="v a">\(k\) = τάξη εκατοστημορίου (1–99)</span>
+      <span class="v a">\(L\) = κάτω όριο κλάσης \(P_k\)</span>
+      <span class="v a">\(F_{i-1}\) = αθρ. απόλ. συχν. κλάσεων πριν</span>
+      <span class="v a">\(\nu_i\) = απόλ. συχν. κλάσης</span>
+      <span class="v a">\(c\) = πλάτος κλάσης</span>
+    </div>
+    <div class="sep"></div>
+    <div class="ftitle">Σχέση με τεταρτημόρια</div>
+    <div class="fb">
+      <span class="math">\[ Q_1 = P_{25} \qquad Q_2 = P_{50} \equiv M \qquad Q_3 = P_{75} \]</span>
+      <span class="desc">Τα τεταρτημόρια είναι ειδικές περιπτώσεις εκατοστημορίων. Η διάμεσος είναι πάντα \(P_{50}\).</span>
+    </div>
+  </div>
+
 </div>
 
 <!-- ===== 4. ΠΙΘΑΝΟΤΗΤΕΣ ===== -->
@@ -609,7 +635,7 @@ window.MathJax = {
   </div>
 </div>
 
-<div class="footer">Πιθανότητες &amp; Στατιστική · Τυπολόγιο εξετάσεων</div>
+<div class="footer">Πιθανότητες &amp; Στατιστική· Τυπολόγιο εξετάσεων</div>
 
 </div>
 </body>
