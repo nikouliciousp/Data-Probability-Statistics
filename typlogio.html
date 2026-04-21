@@ -85,13 +85,21 @@ window.MathJax = {
   .purple .lbl { color: var(--purple); }
   .green  .lbl { color: var(--green); }
 
-  /* ACCENT FTITLE — inherits color from card context */
-  .blue   .ftitle-accent { color: var(--blue); }
-  .teal   .ftitle-accent { color: var(--teal); }
-  .amber  .ftitle-accent { color: var(--amber); }
-  .red    .ftitle-accent { color: var(--red); }
-  .purple .ftitle-accent { color: var(--purple); }
-  .green  .ftitle-accent { color: var(--green); }
+  /* FTITLE — same color as lbl, inherits from card context */
+  .blue   .ftitle { color: var(--blue); }
+  .teal   .ftitle { color: var(--teal); }
+  .amber  .ftitle { color: var(--amber); }
+  .red    .ftitle { color: var(--red); }
+  .purple .ftitle { color: var(--purple); }
+  .green  .ftitle { color: var(--green); }
+
+  /* FTITLE-ACCENT — lighter shade for step labels ① ② ③ */
+  .blue   .ftitle-accent { color: #85B7EB; }
+  .teal   .ftitle-accent { color: #5DCAA5; }
+  .amber  .ftitle-accent { color: #EF9F27; }
+  .red    .ftitle-accent { color: #F09595; }
+  .purple .ftitle-accent { color: #AFA9EC; }
+  .green  .ftitle-accent { color: #97C459; }
 
   /* BADGE color variants */
   .badge.blue   { background: var(--blue-bg);   color: var(--blue);   border-color: var(--blue-bd); }
@@ -126,10 +134,43 @@ window.MathJax = {
   .v.p { background: var(--purple-bg); color: var(--purple); border-color: var(--purple-bd); }
   .v.g { background: var(--green-bg);  color: var(--green);  border-color: var(--green-bd); }
 
-  /* NOTES */
-  .note { font-size: 12px; color: var(--text2); padding: 8px 12px; background: var(--bg3); border-radius: var(--rs); border-left: 2px solid var(--border2); margin-top: 8px; line-height: 1.55; }
-  .warn { font-size: 12px; color: #f5c97a; padding: 8px 12px; background: rgba(245,166,35,0.08); border-radius: var(--rs); border-left: 2px solid var(--amber); margin-top: 8px; line-height: 1.55; }
-  .info { font-size: 12px; color: #7eb8f7; padding: 8px 12px; background: rgba(79,142,247,0.08); border-radius: var(--rs); border-left: 2px solid var(--blue); margin-top: 8px; line-height: 1.55; }
+  /* NOTES — base */
+  .note, .warn, .info {
+    font-size: 12px;
+    padding: 9px 13px;
+    border-radius: var(--rs);
+    border-left: 2px solid;
+    margin-top: 8px;
+    line-height: 1.6;
+    color: rgba(232,234,240,0.75);
+  }
+
+  /* note: same as warn/info */
+  .blue   .note { background: rgba(79,142,247,0.12);   border-color: var(--blue); }
+  .teal   .note { background: rgba(46,217,163,0.12);   border-color: var(--teal); }
+  .amber  .note { background: rgba(245,166,35,0.12);   border-color: var(--amber); }
+  .red    .note { background: rgba(240,96,112,0.12);   border-color: var(--red); }
+  .purple .note { background: rgba(167,139,250,0.12);  border-color: var(--purple); }
+  .green  .note { background: rgba(74,222,128,0.12);   border-color: var(--green); }
+
+  /* warn: slightly more opaque, same card color */
+  .blue   .warn { background: rgba(79,142,247,0.12);   border-color: var(--blue); }
+  .teal   .warn { background: rgba(46,217,163,0.12);   border-color: var(--teal); }
+  .amber  .warn { background: rgba(245,166,35,0.12);   border-color: var(--amber); }
+  .red    .warn { background: rgba(240,96,112,0.12);   border-color: var(--red); }
+  .purple .warn { background: rgba(167,139,250,0.12);  border-color: var(--purple); }
+  .green  .warn { background: rgba(74,222,128,0.12);   border-color: var(--green); }
+
+  /* info: same as warn — accent highlight */
+  .blue   .info { background: rgba(79,142,247,0.12);   border-color: var(--blue); }
+  .teal   .info { background: rgba(46,217,163,0.12);   border-color: var(--teal); }
+  .amber  .info { background: rgba(245,166,35,0.12);   border-color: var(--amber); }
+  .red    .info { background: rgba(240,96,112,0.12);   border-color: var(--red); }
+  .purple .info { background: rgba(167,139,250,0.12);  border-color: var(--purple); }
+  .green  .info { background: rgba(74,222,128,0.12);   border-color: var(--green); }
+
+  /* MathJax inside notes stays visible */
+  .note mjx-container, .warn mjx-container, .info mjx-container { color: var(--text) !important; }
 
   /* SCALE */
   .scale { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin: 10px 0; }
@@ -254,7 +295,7 @@ window.MathJax = {
       <span class="desc">Η τιμή που εμφανίζεται με τη μεγαλύτερη συχνότητα. Μπορεί να υπάρχουν περισσότερες (bimodal, multimodal) ή καμία.</span>
     </div>
     <div class="ftitle">Για ομαδοποιημένα — βήματα</div>
-    <div class="ftitle" class="ftitle ftitle-accent" style="margin-top:8px">① Βρες την κλάση με τη μεγαλύτερη συχνότητα → επικρατούσα κλάση</div>
+    <div class="ftitle ftitle-accent" style="margin-top:8px">① Βρες την κλάση με τη μεγαλύτερη συχνότητα → επικρατούσα κλάση</div>
     <div class="ftitle ftitle-accent">② Υπολόγισε τις διαφορές από τις γειτονικές κλάσεις</div>
     <div class="fb">
       <span class="math">\[ d_1 = \nu_{mo} - \nu_{mo-1} \qquad d_2 = \nu_{mo} - \nu_{mo+1} \]</span>
@@ -761,7 +802,7 @@ window.MathJax = {
   </div>
 </div>
 
-<div class="footer">Πιθανότητες &amp; Στατιστική · Τυπολόγιο εξετάσεων</div>
+<div class="footer">Πιθανότητες &amp; Στατιστική Τυπολόγιο εξετάσεων</div>
 
 </div>
 </body>
