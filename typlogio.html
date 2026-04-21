@@ -4,135 +4,54 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Τυπολόγιο — Πιθανότητες & Στατιστική</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
 <style>
   :root {
-    --bg: #0f1117;
-    --bg2: #1a1d27;
-    --bg3: #22263a;
-    --border: rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.14);
-    --text: #e8eaf0;
-    --text2: #9aa0b8;
-    --text3: #6b7294;
-    --blue:   #4f8ef7;
-    --blue-bg: rgba(79,142,247,0.10);
-    --blue-border: rgba(79,142,247,0.30);
-    --teal:   #2ed9a3;
-    --teal-bg: rgba(46,217,163,0.10);
-    --teal-border: rgba(46,217,163,0.30);
-    --amber:  #f5a623;
-    --amber-bg: rgba(245,166,35,0.10);
-    --amber-border: rgba(245,166,35,0.30);
-    --red:    #f06070;
-    --red-bg: rgba(240,96,112,0.10);
-    --red-border: rgba(240,96,112,0.30);
-    --purple: #a78bfa;
-    --purple-bg: rgba(167,139,250,0.10);
-    --purple-border: rgba(167,139,250,0.30);
-    --green:  #4ade80;
-    --green-bg: rgba(74,222,128,0.10);
-    --green-border: rgba(74,222,128,0.30);
-    --mono: 'Courier New', Courier, monospace;
+    --bg: #0f1117; --bg2: #1a1d27; --bg3: #22263a;
+    --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.15);
+    --text: #e8eaf0; --text2: #9aa0b8; --text3: #6b7294;
+    --blue: #4f8ef7;   --blue-bg: rgba(79,142,247,0.10);   --blue-bd: rgba(79,142,247,0.30);
+    --teal: #2ed9a3;   --teal-bg: rgba(46,217,163,0.10);   --teal-bd: rgba(46,217,163,0.30);
+    --amber:#f5a623;   --amber-bg:rgba(245,166,35,0.10);   --amber-bd:rgba(245,166,35,0.30);
+    --red:  #f06070;   --red-bg:  rgba(240,96,112,0.10);   --red-bd:  rgba(240,96,112,0.30);
+    --purple:#a78bfa;  --purple-bg:rgba(167,139,250,0.10); --purple-bd:rgba(167,139,250,0.30);
+    --green:#4ade80;   --green-bg: rgba(74,222,128,0.10);  --green-bd: rgba(74,222,128,0.30);
+    --r: 10px; --rs: 6px;
     --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --radius: 10px;
-    --radius-sm: 6px;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 14px;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
-
-  .page {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
-  }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; line-height: 1.6; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
 
   /* HEADER */
-  .header {
-    text-align: center;
-    padding: 2.5rem 0 2rem;
-    border-bottom: 1px solid var(--border2);
-    margin-bottom: 2.5rem;
-  }
-  .header h1 {
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    color: var(--text);
-  }
-  .header p {
-    color: var(--text2);
-    font-size: 13px;
-    margin-top: 6px;
-  }
-  .badge-row {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 16px;
-  }
-  .badge {
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-  }
+  .header { text-align: center; padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--border2); margin-bottom: 2rem; }
+  .header h1 { font-size: 26px; font-weight: 700; color: var(--text); }
+  .header p { color: var(--text2); font-size: 13px; margin-top: 6px; }
+  .badge-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+  .badge { font-size: 11px; padding: 3px 12px; border-radius: 20px; font-weight: 600; border: 1px solid; }
 
-  /* SECTION HEADER */
-  .section-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 2.5rem 0 1rem;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border2);
-  }
-  .section-icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-family: var(--mono);
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-  .section-head h2 {
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--text);
-  }
+  /* TOC */
+  .toc { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 1rem 1.2rem; margin-bottom: 2rem; }
+  .toc-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 10px; }
+  .toc-links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .toc-links a { font-size: 12px; padding: 4px 12px; border-radius: 20px; text-decoration: none; border: 1px solid var(--border2); color: var(--text2); transition: all 0.15s; }
+  .toc-links a:hover { background: var(--bg3); color: var(--text); }
 
-  /* GRID */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 14px;
-    margin-bottom: 8px;
-  }
-  .grid.full { grid-template-columns: 1fr; }
+  /* SECTION */
+  .sec { display: flex; align-items: center; gap: 12px; margin: 2.5rem 0 1rem; padding-bottom: 10px; border-bottom: 1px solid var(--border2); }
+  .sec-ic { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; flex-shrink: 0; }
+  .sec h2 { font-size: 17px; font-weight: 600; color: var(--text); }
 
-  /* CARD */
-  .card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.1rem 1.2rem;
-    transition: border-color 0.2s;
-  }
-  .card:hover { border-color: var(--border2); }
+  /* GRID & CARD */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+  .grid.wide { grid-template-columns: 1fr; }
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 1.1rem 1.2rem; margin-top: 0; }
   .card.blue   { border-top: 2px solid var(--blue); }
   .card.teal   { border-top: 2px solid var(--teal); }
   .card.amber  { border-top: 2px solid var(--amber); }
@@ -141,211 +60,60 @@
   .card.green  { border-top: 2px solid var(--green); }
 
   /* CARD LABEL */
-  .card-label {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text3);
-    margin-bottom: 10px;
-  }
-  .card.blue   .card-label { color: var(--blue); }
-  .card.teal   .card-label { color: var(--teal); }
-  .card.amber  .card-label { color: var(--amber); }
-  .card.red    .card-label { color: var(--red); }
-  .card.purple .card-label { color: var(--purple); }
-  .card.green  .card-label { color: var(--green); }
+  .lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .blue   .lbl { color: var(--blue); }
+  .teal   .lbl { color: var(--teal); }
+  .amber  .lbl { color: var(--amber); }
+  .red    .lbl { color: var(--red); }
+  .purple .lbl { color: var(--purple); }
+  .green  .lbl { color: var(--green); }
 
   /* FORMULA BLOCK */
-  .fblock {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 9px 13px;
-    margin: 8px 0;
-  }
-  .fmain {
-    font-family: var(--mono);
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    display: block;
-    line-height: 1.5;
-    letter-spacing: 0.01em;
-  }
-  .fdesc {
-    font-size: 12px;
-    color: var(--text2);
-    line-height: 1.55;
-    margin-top: 5px;
-    display: block;
-  }
+  .fb { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--rs); padding: 10px 14px; margin: 8px 0; }
+  .blue   .fb { border-left: 2px solid var(--blue-bd); }
+  .teal   .fb { border-left: 2px solid var(--teal-bd); }
+  .amber  .fb { border-left: 2px solid var(--amber-bd); }
+  .red    .fb { border-left: 2px solid var(--red-bd); }
+  .purple .fb { border-left: 2px solid var(--purple-bd); }
+  .green  .fb { border-left: 2px solid var(--green-bd); }
 
-  .card.blue   .fblock { border-left: 2px solid var(--blue-border); }
-  .card.teal   .fblock { border-left: 2px solid var(--teal-border); }
-  .card.amber  .fblock { border-left: 2px solid var(--amber-border); }
-  .card.red    .fblock { border-left: 2px solid var(--red-border); }
-  .card.purple .fblock { border-left: 2px solid var(--purple-border); }
-  .card.green  .fblock { border-left: 2px solid var(--green-border); }
+  .fb .math { display: block; font-size: 15px; color: var(--text); padding: 4px 0; overflow-x: auto; }
+  .fb .desc { font-size: 12px; color: var(--text2); line-height: 1.55; margin-top: 6px; display: block; }
 
-  /* FORMULA SUB-TITLE */
-  .ftitle {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text2);
-    margin: 12px 0 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
+  .ftitle { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text3); margin: 12px 0 4px; }
+  .sep { height: 1px; background: var(--border); margin: 12px 0; }
 
-  /* SEPARATOR */
-  .sep {
-    height: 1px;
-    background: var(--border);
-    margin: 12px 0;
-  }
+  /* VARS */
+  .vars { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+  .v { font-size: 11px; padding: 2px 9px; border-radius: 4px; font-weight: 500; border: 1px solid; }
+  .v.b { background: var(--blue-bg);   color: var(--blue);   border-color: var(--blue-bd); }
+  .v.t { background: var(--teal-bg);   color: var(--teal);   border-color: var(--teal-bd); }
+  .v.a { background: var(--amber-bg);  color: var(--amber);  border-color: var(--amber-bd); }
+  .v.r { background: var(--red-bg);    color: var(--red);    border-color: var(--red-bd); }
+  .v.p { background: var(--purple-bg); color: var(--purple); border-color: var(--purple-bd); }
+  .v.g { background: var(--green-bg);  color: var(--green);  border-color: var(--green-bd); }
 
-  /* VARS ROW */
-  .vars {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-top: 8px;
-  }
-  .var {
-    font-size: 11px;
-    padding: 2px 9px;
-    border-radius: 4px;
-    font-family: var(--mono);
-    font-weight: 500;
-  }
-  .var.b { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
-  .var.t { background: var(--teal-bg);   color: var(--teal);   border: 1px solid var(--teal-border); }
-  .var.a { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-border); }
-  .var.r { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
-  .var.p { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
-  .var.g { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+  /* NOTES */
+  .note { font-size: 12px; color: var(--text2); padding: 8px 12px; background: var(--bg3); border-radius: var(--rs); border-left: 2px solid var(--border2); margin-top: 8px; line-height: 1.55; }
+  .warn { font-size: 12px; color: #f5c97a; padding: 8px 12px; background: rgba(245,166,35,0.08); border-radius: var(--rs); border-left: 2px solid var(--amber); margin-top: 8px; line-height: 1.55; }
+  .info { font-size: 12px; color: #7eb8f7; padding: 8px 12px; background: rgba(79,142,247,0.08); border-radius: var(--rs); border-left: 2px solid var(--blue); margin-top: 8px; line-height: 1.55; }
 
-  /* ALERTS */
-  .note {
-    font-size: 12px;
-    color: var(--text2);
-    line-height: 1.55;
-    padding: 8px 12px;
-    background: var(--bg3);
-    border-radius: var(--radius-sm);
-    border-left: 2px solid var(--border2);
-    margin-top: 8px;
-  }
-  .warn {
-    font-size: 12px;
-    color: #f5c97a;
-    line-height: 1.55;
-    padding: 8px 12px;
-    background: rgba(245,166,35,0.08);
-    border-radius: var(--radius-sm);
-    border-left: 2px solid var(--amber);
-    margin-top: 8px;
-  }
-  .info {
-    font-size: 12px;
-    color: #7eb8f7;
-    line-height: 1.55;
-    padding: 8px 12px;
-    background: rgba(79,142,247,0.08);
-    border-radius: var(--radius-sm);
-    border-left: 2px solid var(--blue);
-    margin-top: 8px;
-  }
-
-  /* SCALE ROW */
-  .scale-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 6px;
-    margin: 10px 0;
-  }
-  .sitem {
-    text-align: center;
-    padding: 8px 4px;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
-    background: var(--bg3);
-  }
-  .sval {
-    font-size: 16px;
-    font-weight: 700;
-    display: block;
-    font-family: var(--mono);
-  }
-  .slbl {
-    font-size: 10px;
-    display: block;
-    margin-top: 2px;
-    color: var(--text2);
-  }
+  /* SCALE */
+  .scale { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin: 10px 0; }
+  .si { text-align: center; padding: 8px 4px; border-radius: var(--rs); border: 1px solid var(--border); background: var(--bg3); }
+  .sv { font-size: 17px; font-weight: 700; display: block; }
+  .sl { font-size: 10px; display: block; margin-top: 2px; color: var(--text2); }
 
   /* STEPS */
   ol.steps { list-style: none; counter-reset: s; margin: 8px 0; }
-  ol.steps li {
-    counter-increment: s;
-    display: flex;
-    gap: 10px;
-    margin: 7px 0;
-    font-size: 12px;
-    color: var(--text2);
-    line-height: 1.5;
-    align-items: flex-start;
-  }
-  ol.steps li::before {
-    content: counter(s);
-    background: var(--purple-bg);
-    color: var(--purple);
-    border: 1px solid var(--purple-border);
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    min-width: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: 700;
-    margin-top: 1px;
-    font-family: var(--mono);
-  }
+  ol.steps li { counter-increment: s; display: flex; gap: 10px; margin: 8px 0; font-size: 12px; color: var(--text2); line-height: 1.55; align-items: flex-start; }
+  ol.steps li::before { content: counter(s); background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-bd); border-radius: 50%; width: 22px; height: 22px; min-width: 22px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; margin-top: 1px; }
 
-  /* SCROLL TO TOP */
-  .toc {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1rem 1.2rem;
-    margin-bottom: 2rem;
-  }
-  .toc-title {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--text3);
-    margin-bottom: 10px;
-  }
-  .toc-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .toc-links a {
-    font-size: 12px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    text-decoration: none;
-    border: 1px solid var(--border2);
-    color: var(--text2);
-    transition: all 0.15s;
-  }
-  .toc-links a:hover { background: var(--bg3); color: var(--text); border-color: var(--border2); }
+  /* MathJax overrides */
+  mjx-container { color: var(--text) !important; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
+
+  .footer { text-align: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--text3); font-size: 12px; }
 
   @media (max-width: 600px) {
     .grid { grid-template-columns: 1fr; }
@@ -357,488 +125,467 @@
 <body>
 <div class="page">
 
-  <!-- HEADER -->
-  <div class="header">
-    <h1>Τυπολόγιο — Πιθανότητες &amp; Στατιστική</h1>
-    <p>Όλοι οι τύποι με παραλλαγές και εξηγήσεις</p>
-    <div class="badge-row">
-      <span class="badge" style="background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border)">Μέτρα Θέσης</span>
-      <span class="badge" style="background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-border)">Διασπορά</span>
-      <span class="badge" style="background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)">Τεταρτημόρια</span>
-      <span class="badge" style="background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)">Πιθανότητες</span>
-      <span class="badge" style="background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)">Κανονική Κατανομή</span>
-      <span class="badge" style="background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-border)">Παλινδρόμηση</span>
+<!-- HEADER -->
+<div class="header">
+  <h1>Τυπολόγιο — Πιθανότητες &amp; Στατιστική</h1>
+  <p>Όλοι οι τύποι με παραλλαγές και εξηγήσεις</p>
+  <div class="badge-row">
+    <span class="badge" style="background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bd)">Μέτρα Θέσης</span>
+    <span class="badge" style="background:var(--teal-bg);color:var(--teal);border-color:var(--teal-bd)">Διασπορά</span>
+    <span class="badge" style="background:var(--amber-bg);color:var(--amber);border-color:var(--amber-bd)">Τεταρτημόρια</span>
+    <span class="badge" style="background:var(--red-bg);color:var(--red);border-color:var(--red-bd)">Πιθανότητες</span>
+    <span class="badge" style="background:var(--green-bg);color:var(--green);border-color:var(--green-bd)">Κανονική Κατανομή</span>
+    <span class="badge" style="background:var(--purple-bg);color:var(--purple);border-color:var(--purple-bd)">Παλινδρόμηση</span>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-title">Μετάβαση σε ενότητα</div>
+  <div class="toc-links">
+    <a href="#thesi">Κεντρική Τάση</a>
+    <a href="#diaspora">Διασπορά</a>
+    <a href="#tetartimoria">Τεταρτημόρια</a>
+    <a href="#pithanotites">Πιθανότητες</a>
+    <a href="#kanoniki">Κανονική</a>
+    <a href="#palindromisi">Παλινδρόμηση</a>
+  </div>
+</div>
+
+<!-- ===== 1. ΜΕΣΑ ΘΕΣΗΣ ===== -->
+<div id="thesi" class="sec">
+  <div class="sec-ic" style="background:var(--blue-bg);color:var(--blue)">μ</div>
+  <h2>Μέτρα κεντρικής τάσης</h2>
+</div>
+<div class="grid">
+
+  <div class="card blue">
+    <div class="lbl">Μέση τιμή — Mean</div>
+    <div class="fb">
+      <span class="math">\[ \bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i \]</span>
+      <span class="desc">Για ακατέργαστα δεδομένα: άθροισμα όλων των τιμών διαιρεμένο με το πλήθος \(n\). Εκφράζει το «κέντρο βάρους» του δείγματος.</span>
+    </div>
+    <div class="ftitle">Παραλλαγή — ομαδοποιημένα (σχετικές συχνότητες)</div>
+    <div class="fb">
+      <span class="math">\[ \bar{x} = \sum_{i=1}^{k} x_i \cdot f_i \]</span>
+      <span class="desc">Κεντρική τιμή κάθε κλάσης \(x_i\) επί τη σχετική συχνότητα \(f_i\). Σταθμικός μέσος.</span>
+    </div>
+    <div class="ftitle">Παραλλαγή — ομαδοποιημένα (απόλυτες συχνότητες)</div>
+    <div class="fb">
+      <span class="math">\[ \bar{x} = \frac{1}{n}\sum_{i=1}^{k} x_i \cdot \nu_i \]</span>
+      <span class="desc">Ισοδύναμος τύπος με απόλυτες συχνότητες \(\nu_i\) αντί για σχετικές \(f_i\).</span>
+    </div>
+    <div class="vars">
+      <span class="v b">\(n\) = πλήθος παρατηρήσεων</span>
+      <span class="v b">\(x_i\) = κεντρική τιμή κλάσης</span>
+      <span class="v b">\(f_i\) = σχετική συχνότητα</span>
+      <span class="v b">\(\nu_i\) = απόλυτη συχνότητα</span>
+    </div>
+    <div class="warn">Μετασχηματισμός: αν \(y_i = k\cdot x_i + c\), τότε \(\bar{y} = k\cdot\bar{x} + c\). Πολλαπλασιασμός κλιμακώνει, πρόσθεση σταθεράς μόνο μετατοπίζει.</div>
+  </div>
+
+  <div class="card teal">
+    <div class="lbl">Διάμεσος — Median</div>
+    <div class="fb">
+      <span class="math">\[ M = x_{\frac{n+1}{2}} \quad (n \text{ μονός}) \]</span>
+      <span class="desc">Η τιμή στη θέση \(\tfrac{n+1}{2}\) αφού ταξινομηθούν αύξοντα. Χωρίζει τα δεδομένα στα δύο ίσα μέρη.</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ M = \frac{x_{n/2} + x_{n/2+1}}{2} \quad (n \text{ ζυγός}) \]</span>
+      <span class="desc">Μέσος όρος των δύο κεντρικών τιμών.</span>
+    </div>
+    <div class="sep"></div>
+    <div class="ftitle">Παρεμβολή για ομαδοποιημένα δεδομένα</div>
+    <div class="fb">
+      <span class="math">\[ M = L + \frac{\dfrac{n}{2} - F_{i-1}}{\nu_i} \cdot c \]</span>
+      <span class="desc">Εντοπίζουμε πρώτα ποια κλάση «περιέχει» τη θέση \(n/2\) (συγκρίνουμε με αθροιστικές \(N_i\)). Μετά παρεμβάλλουμε γραμμικά εντός της κλάσης.</span>
+    </div>
+    <div class="vars">
+      <span class="v t">\(L\) = κάτω όριο κλάσης</span>
+      <span class="v t">\(F_{i-1}\) = αθρ. συχν. προηγ. κλάσης</span>
+      <span class="v t">\(\nu_i\) = απόλ. συχν. κλάσης</span>
+      <span class="v t">\(c\) = πλάτος κλάσης</span>
+    </div>
+    <div class="note">Η διάμεσος είναι ανθεκτική στις ακραίες τιμές — προτιμάται έναντι μέσου όταν τα δεδομένα έχουν outliers.</div>
+  </div>
+
+  <div class="card amber">
+    <div class="lbl">Επικρατούσα τιμή — Mode</div>
+    <div class="fb">
+      <span class="math">\[ M_o = \text{τιμή με } \max(\nu_i) \]</span>
+      <span class="desc">Η τιμή που εμφανίζεται με τη μεγαλύτερη συχνότητα. Μπορεί να υπάρχουν περισσότερες (bimodal, multimodal) ή καμία.</span>
+    </div>
+    <div class="ftitle">Για ομαδοποιημένα δεδομένα</div>
+    <div class="fb">
+      <span class="math">\[ M_o = L + \frac{d_1}{d_1 + d_2} \cdot c \]</span>
+      <span class="desc">\(d_1\) = διαφορά συχνότητας από προηγούμενη κλάση · \(d_2\) = διαφορά από επόμενη κλάση.</span>
+    </div>
+    <div class="note">Χρησιμοποιείται κυρίως για ποιοτικά δεδομένα ή όταν θέλουμε την πιο «τυπική» τιμή.</div>
+  </div>
+
+</div>
+
+<!-- ===== 2. ΔΙΑΣΠΟΡΑ ===== -->
+<div id="diaspora" class="sec">
+  <div class="sec-ic" style="background:var(--teal-bg);color:var(--teal)">σ</div>
+  <h2>Μέτρα διασποράς</h2>
+</div>
+<div class="grid">
+
+  <div class="card teal">
+    <div class="lbl">Εύρος — Range</div>
+    <div class="fb">
+      <span class="math">\[ R = x_{\max} - x_{\min} \]</span>
+      <span class="desc">Η διαφορά μεγαλύτερης από μικρότερη τιμή. Απλό, αλλά πολύ ευαίσθητο σε ακραίες τιμές.</span>
+    </div>
+    <div class="ftitle">Πλάτος κλάσης (για ομαδοποίηση)</div>
+    <div class="fb">
+      <span class="math">\[ c = \frac{R}{k} \]</span>
+      <span class="desc">Εύρος δεδομένων διαιρεμένο με τον αριθμό κλάσεων \(k\). Στρογγυλοποιούμε πάντα προς τα άνω.</span>
+    </div>
+    <div class="note">Επιλογή \(k\): \(n{<}20 \to k{=}5\) · \(n{=}20{-}50 \to k{=}6\) · \(n{=}50{-}100 \to k{=}7\) · \(n{=}100{-}200 \to k{=}8\) · \(n{\geq}1000 \to k{=}12\)</div>
+  </div>
+
+  <div class="card blue">
+    <div class="lbl">Διακύμανση — Variance</div>
+    <div class="fb">
+      <span class="math">\[ s^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^2 \]</span>
+      <span class="desc">Ορισμός: μέσο τετραγωνικό άθροισμα αποκλίσεων από τον μέσο. Εκφράζει τη μέση «τετραγωνική απόσταση» των τιμών από τον \(\bar{x}\).</span>
+    </div>
+    <div class="ftitle">Παραλλαγή — υπολογιστικός τύπος</div>
+    <div class="fb">
+      <span class="math">\[ s^2 = \frac{1}{n}\sum_{i=1}^{n} x_i^2 - \bar{x}^2 \]</span>
+      <span class="desc">Αλγεβρικά ισοδύναμος, πιο γρήγορος: μέσος τετράγωνο τιμών μείον τετράγωνο μέσου.</span>
+    </div>
+    <div class="ftitle">Παραλλαγή — ομαδοποιημένα δεδομένα</div>
+    <div class="fb">
+      <span class="math">\[ s^2 = \sum_{i=1}^{k} x_i^2 \cdot f_i - \bar{x}^2 \]</span>
+      <span class="desc">Σταθμικό τετράγωνο με σχετικές συχνότητες \(f_i\) (κεντρικές τιμές κλάσεων).</span>
+    </div>
+    <div class="warn">Μετασχηματισμός: αν \(y_i = k\cdot x_i + c\), τότε \(s_y^2 = k^2 \cdot s_x^2\). Η πρόσθεση σταθεράς δεν αλλάζει τη διακύμανση — μόνο ο πολλαπλασιασμός την επηρεάζει (στο τετράγωνο).</div>
+  </div>
+
+  <div class="card teal">
+    <div class="lbl">Τυπική απόκλιση — Standard Deviation</div>
+    <div class="fb">
+      <span class="math">\[ s = \sqrt{s^2} \]</span>
+      <span class="desc">Τετραγωνική ρίζα της διακύμανσης. Έχει τις ίδιες μονάδες με τα δεδομένα — αυτό τη κάνει ερμηνεύσιμη.</span>
+    </div>
+    <div class="sep"></div>
+    <div class="ftitle">Τυπικό σφάλμα μέσης τιμής — Standard Error</div>
+    <div class="fb">
+      <span class="math">\[ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} \]</span>
+      <span class="desc">Η τυπική απόκλιση της κατανομής των δειγματικών μέσων. Μετρά πόσο ακριβής είναι ο \(\bar{x}\) ως εκτιμητής του πληθυσμιακού μέσου \(\mu\).</span>
+    </div>
+    <div class="vars">
+      <span class="v t">\(\sigma\) = τυπ. απόκλιση πληθυσμού</span>
+      <span class="v t">\(n\) = μέγεθος δείγματος</span>
     </div>
   </div>
 
-  <!-- TOC -->
-  <div class="toc">
-    <div class="toc-title">Μετάβαση σε ενότητα</div>
-    <div class="toc-links">
-      <a href="#thesi">Κεντρική Τάση</a>
-      <a href="#diaspora">Διασπορά</a>
-      <a href="#tetartimoria">Τεταρτημόρια</a>
-      <a href="#pithanotites">Πιθανότητες</a>
-      <a href="#kanoniki">Κανονική</a>
-      <a href="#palindromisi">Παλινδρόμηση</a>
+  <div class="card amber">
+    <div class="lbl">Συντελεστής μεταβλητότητας — CV</div>
+    <div class="fb">
+      <span class="math">\[ CV = \frac{s}{\bar{x}} \cdot 100\% \]</span>
+      <span class="desc">Σχετική διασπορά: εκφράζει την τυπική απόκλιση ως ποσοστό του μέσου. Αδιάστατο — επιτρέπει σύγκριση δεδομένων διαφορετικών μονάδων.</span>
+    </div>
+    <div class="note">Όσο μεγαλύτερο το \(CV\), τόσο πιο «σκορπισμένα» τα δεδομένα σχετικά με τον μέσο τους.</div>
+  </div>
+
+</div>
+
+<!-- ===== 3. ΤΕΤΑΡΤΗΜΟΡΙΑ ===== -->
+<div id="tetartimoria" class="sec">
+  <div class="sec-ic" style="background:var(--amber-bg);color:var(--amber)">Q</div>
+  <h2>Τεταρτημόρια και ενδοτεταρτημοριακή απόκλιση</h2>
+</div>
+<div class="grid">
+
+  <div class="card amber">
+    <div class="lbl">Εντοπισμός θέσης τεταρτημορίων</div>
+    <div class="fb">
+      <span class="math">\[ \text{θέση } Q_1 = \frac{n}{4} \]</span>
+      <span class="desc">Η θέση (όχι η τιμή) του 1ου τεταρτημορίου στη ταξινομημένη σειρά.</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ \text{θέση } Q_2 = \frac{2n}{4} = \frac{n}{2} \equiv M \]</span>
+      <span class="desc">Το 2ο τεταρτημόριο ταυτίζεται απόλυτα με τη Διάμεσο.</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ \text{θέση } Q_3 = \frac{3n}{4} \]</span>
+      <span class="desc">Η θέση του 3ου τεταρτημορίου.</span>
+    </div>
+    <div class="note">Συγκρίνουμε κάθε θέση με τις αθροιστικές απόλυτες συχνότητες \(N_i\) για να βρούμε σε ποια κλάση ανήκει το κάθε \(Q_i\).</div>
+  </div>
+
+  <div class="card amber">
+    <div class="lbl">Υπολογισμός τιμής τεταρτημορίου (παρεμβολή)</div>
+    <div class="fb">
+      <span class="math">\[ Q_i = L + \frac{\dfrac{i \cdot n}{4} - F_{i-1}}{\nu_i} \cdot c \]</span>
+      <span class="desc">Γενικός τύπος για \(i = 1, 2, 3\). Ίδια λογική παρεμβολής με τη Διάμεσο — απλώς αλλάζει το \(i\).</span>
+    </div>
+    <div class="vars">
+      <span class="v a">\(L\) = κάτω όριο κλάσης \(Q_i\)</span>
+      <span class="v a">\(F_{i-1}\) = αθρ. απόλυτη συχν. κλάσεων πριν</span>
+      <span class="v a">\(\nu_i\) = απόλ. συχν. κλάσης</span>
+      <span class="v a">\(c\) = πλάτος κλάσης</span>
+      <span class="v a">\(i\) = 1, 2 ή 3</span>
     </div>
   </div>
 
-  <!-- ===== 1. ΜΕΣΑ ΘΕΣΗΣ ===== -->
-  <div id="thesi" class="section-head">
-    <div class="section-icon" style="background:var(--blue-bg);color:var(--blue)">μ</div>
-    <h2>Μέτρα κεντρικής τάσης</h2>
-  </div>
-  <div class="grid">
-
-    <div class="card blue">
-      <div class="card-label">Μέση τιμή — Mean</div>
-      <div class="fblock">
-        <span class="fmain">x̄ = (1/n) · Σᵢ xᵢ</span>
-        <span class="fdesc">Για ακατέργαστα δεδομένα: άθροισμα όλων των τιμών διαιρεμένο με το πλήθος n. Εκφράζει το «κέντρο βάρους» του δείγματος.</span>
-      </div>
-      <div class="ftitle">Παραλλαγή — ομαδοποιημένα με σχετικές συχνότητες</div>
-      <div class="fblock">
-        <span class="fmain">x̄ = Σᵢ xᵢ · fᵢ</span>
-        <span class="fdesc">Κεντρική τιμή κάθε κλάσης επί τη σχετική της συχνότητα. Το άθροισμα δίνει τον σταθμικό μέσο.</span>
-      </div>
-      <div class="ftitle">Παραλλαγή — ομαδοποιημένα με απόλυτες συχνότητες</div>
-      <div class="fblock">
-        <span class="fmain">x̄ = (1/n) · Σᵢ xᵢ · νᵢ</span>
-        <span class="fdesc">Ισοδύναμος τύπος με απόλυτες συχνότητες νᵢ αντί για σχετικές fᵢ.</span>
-      </div>
-      <div class="vars">
-        <span class="var b">n = πλήθος παρατηρήσεων</span>
-        <span class="var b">xᵢ = κεντρική τιμή κλάσης</span>
-        <span class="var b">fᵢ = σχετική συχνότητα</span>
-        <span class="var b">νᵢ = απόλυτη συχνότητα</span>
-      </div>
-      <div class="warn">Αν yᵢ = k·xᵢ + c → ȳ = k·x̄ + c. Πολλαπλασιασμός μετακινεί και κλιμακώνει, πρόσθεση σταθεράς μόνο μετακινεί.</div>
+  <div class="card amber">
+    <div class="lbl">Ενδοτεταρτημοριακό εύρος και τεταρτημοριακή απόκλιση</div>
+    <div class="fb">
+      <span class="math">\[ IQR = Q_3 - Q_1 \]</span>
+      <span class="desc">Ενδοτεταρτημοριακό εύρος: εύρος του «μεσαίου 50%» των δεδομένων. Ανθεκτικό στις ακραίες τιμές.</span>
     </div>
-
-    <div class="card teal">
-      <div class="card-label">Διάμεσος — Median</div>
-      <div class="fblock">
-        <span class="fmain">Μ = x₍ₙ₊₁₎/₂  (n μονός)</span>
-        <span class="fdesc">Η τιμή στη θέση (n+1)/2 αφού ταξινομηθούν αύξοντα. Χωρίζει τα δεδομένα στα δύο ίσα μέρη.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">Μ = (x_{n/2} + x_{n/2+1}) / 2  (n ζυγός)</span>
-        <span class="fdesc">Για ζυγό n: ο μέσος όρος των δύο κεντρικών τιμών.</span>
-      </div>
-      <div class="sep"></div>
-      <div class="ftitle">Παρεμβολή για ομαδοποιημένα δεδομένα</div>
-      <div class="fblock">
-        <span class="fmain">Μ = L + [(n/2 − Fᵢ₋₁) / νᵢ] · c</span>
-        <span class="fdesc">Βρίσκουμε πρώτα ποια κλάση «περιέχει» τη θέση n/2 (συγκρίνουμε με αθροιστικές Νᵢ). Μετά παρεμβάλλουμε γραμμικά εντός της κλάσης.</span>
-      </div>
-      <div class="vars">
-        <span class="var t">L = κάτω όριο κλάσης διαμέσου</span>
-        <span class="var t">Fᵢ₋₁ = αθρ. συχν. προηγούμενης κλάσης</span>
-        <span class="var t">νᵢ = απόλυτη συχν. κλάσης</span>
-        <span class="var t">c = πλάτος κλάσης</span>
-      </div>
-      <div class="note">Η διάμεσος είναι ανθεκτική στις ακραίες τιμές — προτιμάται έναντι μέσου όταν τα δεδομένα έχουν outliers.</div>
+    <div class="fb">
+      <span class="math">\[ Q = \frac{Q_3 - Q_1}{2} \]</span>
+      <span class="desc">Τεταρτημοριακή (ημι-ενδοτεταρτημοριακή) απόκλιση. Μισό του \(IQR\). Μέτρο διασποράς ανθεκτικό στις ακραίες τιμές.</span>
     </div>
-
-    <div class="card amber">
-      <div class="card-label">Επικρατούσα τιμή — Mode</div>
-      <div class="fblock">
-        <span class="fmain">Μo = τιμή με max(νᵢ)</span>
-        <span class="fdesc">Η τιμή που εμφανίζεται με τη μεγαλύτερη συχνότητα. Μπορεί να υπάρχουν περισσότερες (bimodal, multimodal) ή καμία.</span>
-      </div>
-      <div class="ftitle">Για ομαδοποιημένα δεδομένα</div>
-      <div class="fblock">
-        <span class="fmain">Μo = L + [d₁ / (d₁ + d₂)] · c</span>
-        <span class="fdesc">d₁ = διαφορά συχνότητας επικρατούσας κλάσης από την προηγούμενη<br>d₂ = διαφορά από την επόμενη κλάση</span>
-      </div>
-      <div class="note">Χρησιμοποιείται κυρίως για ποιοτικά δεδομένα ή όταν θέλουμε την πιο «τυπική» τιμή, όχι τον μαθηματικό μέσο.</div>
-    </div>
-
-  </div>
-
-  <!-- ===== 2. ΔΙΑΣΠΟΡΑ ===== -->
-  <div id="diaspora" class="section-head">
-    <div class="section-icon" style="background:var(--teal-bg);color:var(--teal)">σ</div>
-    <h2>Μέτρα διασποράς</h2>
-  </div>
-  <div class="grid">
-
-    <div class="card teal">
-      <div class="card-label">Εύρος — Range</div>
-      <div class="fblock">
-        <span class="fmain">R = x_max − x_min</span>
-        <span class="fdesc">Η διαφορά μεγαλύτερης από μικρότερη τιμή. Απλό στον υπολογισμό, αλλά πολύ ευαίσθητο σε ακραίες τιμές.</span>
-      </div>
-      <div class="ftitle">Εύρος κλάσης (για ομαδοποίηση)</div>
-      <div class="fblock">
-        <span class="fmain">c = R / k</span>
-        <span class="fdesc">Πλάτος κάθε κλάσης: εύρος δεδομένων διαιρεμένο με τον αριθμό κλάσεων k. Στρογγυλοποιούμε πάντα προς τα άνω.</span>
-      </div>
-      <div class="note">Επιλογή k: n&lt;20→k=5 · n=20–50→k=6 · n=50–100→k=7 · n=100–200→k=8 · n≥1000→k=12</div>
-    </div>
-
-    <div class="card blue">
-      <div class="card-label">Διακύμανση — Variance</div>
-      <div class="fblock">
-        <span class="fmain">s² = (1/n) · Σᵢ (xᵢ − x̄)²</span>
-        <span class="fdesc">Ορισμός: μέσο τετραγωνικό άθροισμα αποκλίσεων από τον μέσο. Εκφράζει τη μέση «τετραγωνική απόσταση» των τιμών από τον μέσο.</span>
-      </div>
-      <div class="ftitle">Παραλλαγή — υπολογιστικός τύπος</div>
-      <div class="fblock">
-        <span class="fmain">s² = (1/n) · Σᵢ xᵢ² − x̄²</span>
-        <span class="fdesc">Αλγεβρικά ισοδύναμος, πιο γρήγορος για χειρόγραφο υπολογισμό. Αρκεί να γνωρίζεις Σxᵢ² και x̄.</span>
-      </div>
-      <div class="ftitle">Παραλλαγή — ομαδοποιημένα δεδομένα</div>
-      <div class="fblock">
-        <span class="fmain">s² = Σᵢ xᵢ² · fᵢ − x̄²</span>
-        <span class="fdesc">Σταθμικό τετράγωνο με σχετικές συχνότητες fᵢ (κεντρικές τιμές κλάσεων).</span>
-      </div>
-      <div class="vars">
-        <span class="var b">xᵢ = κεντρική τιμή κλάσης</span>
-        <span class="var b">fᵢ = σχετική συχνότητα κλάσης</span>
-      </div>
-      <div class="warn">Μετασχηματισμός: αν yᵢ = k·xᵢ + c, τότε s²_y = k²·s²_x. Η πρόσθεση σταθεράς δεν αλλάζει τη διακύμανση — μόνο ο πολλαπλασιασμός την επηρεάζει (και στο τετράγωνο).</div>
-    </div>
-
-    <div class="card teal">
-      <div class="card-label">Τυπική απόκλιση — Standard Deviation</div>
-      <div class="fblock">
-        <span class="fmain">s = √s²</span>
-        <span class="fdesc">Τετραγωνική ρίζα της διακύμανσης. Έχει τις ίδιες μονάδες με τα δεδομένα — αυτό τη κάνει ερμηνεύσιμη. Μετρά τη «μέση απόσταση» από τον μέσο.</span>
-      </div>
-      <div class="ftitle">Τυπικό σφάλμα μέσης τιμής — Standard Error</div>
-      <div class="fblock">
-        <span class="fmain">σ_{x̄} = σ / √n</span>
-        <span class="fdesc">Η τυπική απόκλιση της κατανομής των δειγματικών μέσων. Μετρά πόσο ακριβής είναι ο δειγματικός μέσος ως εκτιμητής του πληθυσμιακού μέσου μ.</span>
-      </div>
-      <div class="vars">
-        <span class="var t">σ = τυπ. απόκλιση πληθυσμού</span>
-        <span class="var t">n = μέγεθος δείγματος</span>
-      </div>
-    </div>
-
-    <div class="card amber">
-      <div class="card-label">Συντελεστής μεταβλητότητας — CV</div>
-      <div class="fblock">
-        <span class="fmain">CV = (s / x̄) · 100%</span>
-        <span class="fdesc">Σχετική διασπορά: εκφράζει την τυπική απόκλιση ως ποσοστό του μέσου. Αδιάστατο — επιτρέπει σύγκριση δεδομένων διαφορετικών μονάδων ή κλιμάκων.</span>
-      </div>
-      <div class="note">Όσο μεγαλύτερο το CV, τόσο πιο «σκορπισμένα» τα δεδομένα σχετικά με τον μέσο τους. Δύο σύνολα με ίδιο s μπορεί να έχουν πολύ διαφορετικό CV.</div>
-    </div>
-
-  </div>
-
-  <!-- ===== 3. ΤΕΤΑΡΤΗΜΟΡΙΑ ===== -->
-  <div id="tetartimoria" class="section-head">
-    <div class="section-icon" style="background:var(--amber-bg);color:var(--amber)">Q</div>
-    <h2>Τεταρτημόρια και ενδοτεταρτημοριακή απόκλιση</h2>
-  </div>
-  <div class="grid">
-
-    <div class="card amber">
-      <div class="card-label">Εντοπισμός θέσης τεταρτημορίων</div>
-      <div class="fblock">
-        <span class="fmain">θέση Q₁ = n/4</span>
-        <span class="fdesc">Η θέση (όχι η τιμή) του 1ου τεταρτημορίου στη ταξινομημένη σειρά.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">θέση Q₂ = 2n/4 = n/2  (= Διάμεσος)</span>
-        <span class="fdesc">Το 2ο τεταρτημόριο ταυτίζεται απόλυτα με τη Διάμεσο.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">θέση Q₃ = 3n/4</span>
-        <span class="fdesc">Η θέση του 3ου τεταρτημορίου.</span>
-      </div>
-      <div class="note">Συγκρίνουμε κάθε θέση με τις αθροιστικές απόλυτες συχνότητες Νᵢ για να βρούμε σε ποια κλάση ανήκει το κάθε Qᵢ.</div>
-    </div>
-
-    <div class="card amber">
-      <div class="card-label">Υπολογισμός τιμής Qᵢ (παρεμβολή)</div>
-      <div class="fblock">
-        <span class="fmain">Qᵢ = L + [(i·n/4 − Fᵢ₋₁) / νᵢ] · c</span>
-        <span class="fdesc">Γενικός τύπος για i = 1, 2, 3. Ίδια λογική παρεμβολής με τη Διάμεσο — απλώς αλλάζει το i.</span>
-      </div>
-      <div class="vars">
-        <span class="var a">L = κάτω όριο κλάσης Qᵢ</span>
-        <span class="var a">Fᵢ₋₁ = αθρ. απόλυτη συχν. κλάσεων πριν</span>
-        <span class="var a">νᵢ = απόλυτη συχν. κλάσης</span>
-        <span class="var a">c = πλάτος κλάσης</span>
-        <span class="var a">i = 1, 2 ή 3</span>
-      </div>
-    </div>
-
-    <div class="card amber">
-      <div class="card-label">Ενδοτεταρτημοριακό εύρος και τεταρτημοριακή απόκλιση</div>
-      <div class="fblock">
-        <span class="fmain">IQR = Q₃ − Q₁</span>
-        <span class="fdesc">Ενδοτεταρτημοριακό εύρος: το εύρος του «μεσαίου 50%» των δεδομένων. Ανθεκτικό στις ακραίες τιμές.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">Q = (Q₃ − Q₁) / 2</span>
-        <span class="fdesc">Τεταρτημοριακή (ημι-ενδοτεταρτημοριακή) απόκλιση. Μισό του IQR. Χρησιμοποιείται ως μέτρο διασποράς ανθεκτικό στις ακραίες τιμές.</span>
-      </div>
-      <div class="sep"></div>
-      <div class="ftitle">Συμμετρία κατανομής — Bowley</div>
-      <div class="fblock">
-        <span class="fmain">S = [(Q₃ − Q₂) − (Q₂ − Q₁)] / (Q₃ − Q₁)</span>
-        <span class="fdesc">S &gt; 0 → θετική ασυμμετρία (ουρά δεξιά) · S &lt; 0 → αρνητική · S = 0 → συμμετρία.</span>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ===== 4. ΠΙΘΑΝΟΤΗΤΕΣ ===== -->
-  <div id="pithanotites" class="section-head">
-    <div class="section-icon" style="background:var(--red-bg);color:var(--red)">P</div>
-    <h2>Πιθανότητες</h2>
-  </div>
-  <div class="grid">
-
-    <div class="card red">
-      <div class="card-label">Βασικοί ορισμοί και αξιώματα</div>
-      <div class="fblock">
-        <span class="fmain">P(A) = N(A) / N(Ω)</span>
-        <span class="fdesc">Κλασικός ορισμός: αριθμός ευνοϊκών ενδεχομένων προς συνολικά ισοπίθανα ενδεχόμενα.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">0 ≤ P(A) ≤ 1   και   P(Ω) = 1</span>
-        <span class="fdesc">Αξιώματα Kolmogorov: πιθανότητα πάντα μεταξύ 0 και 1. Το βέβαιο ενδεχόμενο έχει P = 1.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">P(Aᶜ) = 1 − P(A)</span>
-        <span class="fdesc">Συμπληρωματικό: πιθανότητα «να ΜΗΝ συμβεί το A». Θεμελιώδης κανόνας — χρησιμοποιείται συχνά «ανάποδα» για ευκολία.</span>
-      </div>
-    </div>
-
-    <div class="card red">
-      <div class="card-label">Ένωση ενδεχομένων (A ή B)</div>
-      <div class="fblock">
-        <span class="fmain">P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</span>
-        <span class="fdesc">Γενικός τύπος: αφαιρούμε την τομή γιατί αλλιώς την μετράμε δύο φορές.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">P(A ∪ B) = P(A) + P(B),  αν  A ∩ B = ∅</span>
-        <span class="fdesc">Ειδική περίπτωση αμοιβαίως αποκλειόμενων (ασυμβίβαστων) ενδεχομένων: δεν μπορούν να συμβούν ταυτόχρονα.</span>
-      </div>
-    </div>
-
-    <div class="card red">
-      <div class="card-label">Τομή ενδεχομένων — Πολλαπλασιαστικός κανόνας</div>
-      <div class="fblock">
-        <span class="fmain">P(A ∩ B) = P(A) · P(B|A)</span>
-        <span class="fdesc">Γενικός τύπος: πιθανότητα να συμβούν ΚΑΙ τα δύο. Ισχύει πάντα.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">P(A ∩ B) = P(A) · P(B),  αν  A, B ανεξάρτητα</span>
-        <span class="fdesc">Ειδική περίπτωση: η γνώση ότι συνέβη το A δεν επηρεάζει την πιθανότητα του B.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">P(A ∩ B ∩ C) = P(A) · P(B) · P(C),  [ανεξ.]</span>
-        <span class="fdesc">Επέκταση για τρία ανεξάρτητα ενδεχόμενα — χρησιμοποιείται συχνά σε αιτήσεις, εκδηλώσεις κ.ά.</span>
-      </div>
-      <div class="info">Κλασικό «κόλπο»: P(τουλάχιστον ένα) = 1 − P(κανένα) = 1 − P(Aᶜ)·P(Bᶜ)·P(Cᶜ)</div>
-    </div>
-
-    <div class="card purple">
-      <div class="card-label">Δεσμευμένη πιθανότητα</div>
-      <div class="fblock">
-        <span class="fmain">P(A|B) = P(A ∩ B) / P(B)</span>
-        <span class="fdesc">Η πιθανότητα του A γνωρίζοντας ότι συνέβη το B. Ο δειγματικός χώρος «συρρικνώνεται» στο B.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">P(B|A) = P(A ∩ B) / P(A)</span>
-        <span class="fdesc">Αντίστροφα: η πιθανότητα του B δεδομένου A.</span>
-      </div>
-      <div class="note">Για τράπουλα: μειώνουμε το N(Ω) με βάση τη δεδομένη πληροφορία και δουλεύουμε μόνο εντός της δεδομένης συνθήκης.</div>
-    </div>
-
-    <div class="card purple">
-      <div class="card-label">Ολική πιθανότητα και θεώρημα Bayes</div>
-      <div class="fblock">
-        <span class="fmain">P(B) = Σᵢ P(B|Aᵢ) · P(Aᵢ)</span>
-        <span class="fdesc">Ολική πιθανότητα: αν τα A₁, A₂, ..., Aₙ διαμερίζουν το Ω (αμοιβαίως αποκλειόμενα και εξαντλητικά), τότε P(B) είναι σταθμικός μέσος.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">P(Aᵢ|B) = [P(B|Aᵢ)·P(Aᵢ)] / Σⱼ [P(B|Aⱼ)·P(Aⱼ)]</span>
-        <span class="fdesc">Θεώρημα Bayes: «αντιστρέφουμε» τη δεσμευμένη πιθανότητα. Ο παρονομαστής είναι η ολική πιθανότητα P(B).</span>
-      </div>
-      <div class="vars">
-        <span class="var p">P(Aᵢ) = prior (προηγούμενη πιθ.)</span>
-        <span class="var p">P(B|Aᵢ) = likelihood (εμπιστοσύνη)</span>
-        <span class="var p">P(Aᵢ|B) = posterior (εκ των υστέρων)</span>
-      </div>
-      <div class="note">Εφαρμογή: γραμμές παραγωγής (ελαττωματικά), διαγνωστικά τεστ (ιός), καιρικές συνθήκες (αργεί στη δουλειά).</div>
-    </div>
-
-  </div>
-
-  <!-- ===== 5. ΚΑΝΟΝΙΚΗ ===== -->
-  <div id="kanoniki" class="section-head">
-    <div class="section-icon" style="background:var(--green-bg);color:var(--green)">N</div>
-    <h2>Κανονική κατανομή</h2>
-  </div>
-  <div class="grid">
-
-    <div class="card green">
-      <div class="card-label">Τυποποίηση — Z-score</div>
-      <div class="fblock">
-        <span class="fmain">Z = (X − μ) / σ</span>
-        <span class="fdesc">Μετατρέπει οποιαδήποτε κανονική X ~ N(μ, σ²) στην τυπική κανονική Z ~ N(0,1). Εκφράζει πόσες τυπικές αποκλίσεις απέχει η X από τον μέσο.</span>
-      </div>
-      <div class="vars">
-        <span class="var g">μ = μέση τιμή πληθυσμού</span>
-        <span class="var g">σ = τυπ. απόκλιση πληθυσμού</span>
-        <span class="var g">Z ~ N(0,1)</span>
-      </div>
-    </div>
-
-    <div class="card green">
-      <div class="card-label">Υπολογισμός πιθανοτήτων — πίνακας Φ(z)</div>
-      <div class="fblock">
-        <span class="fmain">P(X &lt; a) = Φ(zₐ)</span>
-        <span class="fdesc">Αριστερή ουρά: διαβάζουμε απευθείας από τον πίνακα τυπικής κανονικής.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">P(X &gt; a) = 1 − Φ(zₐ)</span>
-        <span class="fdesc">Δεξιά ουρά: συμπλήρωμα της αριστερής πιθανότητας.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">P(a &lt; X &lt; b) = Φ(z_b) − Φ(z_a)</span>
-        <span class="fdesc">Ενδιάμεσο διάστημα: αφαιρούμε τις αντίστοιχες τιμές του πίνακα.</span>
-      </div>
-      <div class="note">Βήματα: υπολόγισε z = (X−μ)/σ → βρες Φ(z) από πίνακα → εφάρμοσε τον κατάλληλο τύπο παραπάνω.</div>
-    </div>
-
-    <div class="card green">
-      <div class="card-label">Κατανομή δειγματικής μέσης τιμής</div>
-      <div class="fblock">
-        <span class="fmain">X̄ ~ N(μ,  σ²/n)</span>
-        <span class="fdesc">Αν X ~ N(μ, σ²), τότε ο δειγματικός μέσος X̄ δείγματος μεγέθους n ακολουθεί ακριβώς αυτή την κατανομή.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">Z = (X̄ − μ) / (σ / √n)</span>
-        <span class="fdesc">Τυποποίηση δειγματικού μέσου. Ο παρονομαστής σ/√n είναι το Τυπικό Σφάλμα (Standard Error) της μέσης τιμής.</span>
-      </div>
-      <div class="info">Κεντρικό Οριακό Θεώρημα: ακόμα και αν ο πληθυσμός δεν είναι κανονικός, για n ≥ 30 ο X̄ είναι κατά προσέγγιση κανονικός. Το n αυξάνει → η κατανομή του X̄ «στενεύει».</div>
-    </div>
-
-  </div>
-
-  <!-- ===== 6. ΠΑΛΙΝΔΡΟΜΗΣΗ ===== -->
-  <div id="palindromisi" class="section-head">
-    <div class="section-icon" style="background:var(--purple-bg);color:var(--purple)">β</div>
-    <h2>Γραμμική παλινδρόμηση και συσχέτιση</h2>
-  </div>
-  <div class="grid">
-
-    <div class="card purple">
-      <div class="card-label">Εξίσωση ευθείας παλινδρόμησης</div>
-      <div class="fblock">
-        <span class="fmain">ŷ = β₀ + β₁ · x</span>
-        <span class="fdesc">Η ευθεία που ελαχιστοποιεί το άθροισμα τετραγώνων υπολοίπων (Least Squares). Δίνει τη βέλτιστη γραμμική πρόβλεψη.</span>
-      </div>
-      <div class="vars">
-        <span class="var p">ŷ = προβλεπόμενη τιμή y</span>
-        <span class="var p">β₀ = τεταγμένη επί την αρχή</span>
-        <span class="var p">β₁ = κλίση (slope)</span>
-        <span class="var p">x = ανεξάρτητη μεταβλητή</span>
-      </div>
-      <div class="note">Η ευθεία διέρχεται πάντα από το σημείο (x̄, ȳ). Προς αυτό πρέπει να ελέγξεις την ορθότητα των υπολογισμών.</div>
-    </div>
-
-    <div class="card purple">
-      <div class="card-label">Βοηθητικά αθροίσματα — Sxx, Syy, Sxy</div>
-      <div class="fblock">
-        <span class="fmain">Sₓₓ = Σᵢ xᵢ² − (Σᵢ xᵢ)² / n</span>
-        <span class="fdesc">Άθροισμα τετραγώνων x: μετρά τη συνολική μεταβλητότητα των xᵢ γύρω από τον x̄.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">Sᵧᵧ = Σᵢ yᵢ² − (Σᵢ yᵢ)² / n</span>
-        <span class="fdesc">Άθροισμα τετραγώνων y: μεταβλητότητα yᵢ. Χρειάζεται μόνο για r, όχι για την ευθεία.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">Sₓᵧ = Σᵢ xᵢyᵢ − (Σᵢ xᵢ)(Σᵢ yᵢ) / n</span>
-        <span class="fdesc">Άθροισμα συνδιακύμανσης: μετρά πώς μεταβάλλονται μαζί x και y. Αρνητικό → αντίθετη κατεύθυνση.</span>
-      </div>
-    </div>
-
-    <div class="card purple">
-      <div class="card-label">Υπολογισμός συντελεστών β₁ και β₀</div>
-      <div class="fblock">
-        <span class="fmain">β₁ = Sₓᵧ / Sₓₓ</span>
-        <span class="fdesc">Κλίση: πόσο μεταβάλλεται το ŷ για κάθε μονάδα αύξησης x. Θετικό → ανοδική σχέση, αρνητικό → καθοδική.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">β₀ = ȳ − β₁ · x̄</span>
-        <span class="fdesc">Σταθερά: υπολογίζεται ΜΕΤΑ τον β₁. Είναι η τιμή ŷ όταν x = 0 (δεν έχει πάντα πρακτική ερμηνεία).</span>
-      </div>
-      <div class="note">Σειρά υπολογισμού: πρώτα x̄, ȳ → μετά Sₓₓ, Sₓᵧ → μετά β₁ → τελευταίο β₀.</div>
-    </div>
-
-    <div class="card purple">
-      <div class="card-label">Συντελεστής συσχέτισης Pearson — r</div>
-      <div class="fblock">
-        <span class="fmain">r = Sₓᵧ / √(Sₓₓ · Sᵧᵧ)</span>
-        <span class="fdesc">Μετρά ισχύ και κατεύθυνση γραμμικής σχέσης. Αδιάστατο μέγεθος, πάντα −1 ≤ r ≤ +1.</span>
-      </div>
-      <div class="scale-row">
-        <div class="sitem">
-          <span class="sval" style="color:var(--red)">−1</span>
-          <span class="slbl">τέλεια αρνητική</span>
-        </div>
-        <div class="sitem">
-          <span class="sval" style="color:var(--text2)">0</span>
-          <span class="slbl">καμία γραμμική</span>
-        </div>
-        <div class="sitem">
-          <span class="sval" style="color:var(--green)">+1</span>
-          <span class="slbl">τέλεια θετική</span>
-        </div>
-      </div>
-      <div class="note">|r| &lt; 0.3 → αδύναμη · 0.3–0.7 → μέτρια · &gt; 0.7 → ισχυρή · r = ±1 → τέλεια γραμμική</div>
-      <div class="warn">Συσχέτιση ≠ αιτιότητα. Ακόμα και r = 1 δεν αποδεικνύει ότι το x προκαλεί το y.</div>
-    </div>
-
-    <div class="card purple">
-      <div class="card-label">Συντελεστής προσδιορισμού — R²</div>
-      <div class="fblock">
-        <span class="fmain">R² = r²</span>
-        <span class="fdesc">Το ποσοστό της συνολικής μεταβλητότητας του y που ερμηνεύεται γραμμικά από το x.</span>
-      </div>
-      <div class="fblock">
-        <span class="fmain">R² = 1 − SSE / SST</span>
-        <span class="fdesc">SSE = Σ(yᵢ − ŷᵢ)² = σφάλματα μοντέλου · SST = Σ(yᵢ − ȳ)² = συνολική μεταβλητότητα y.</span>
-      </div>
-      <div class="vars">
-        <span class="var p">0 ≤ R² ≤ 1</span>
-        <span class="var p">R² = 1 → τέλεια προσαρμογή</span>
-        <span class="var p">R² = 0 → καμία εξήγηση</span>
-      </div>
-      <div class="note">Π.χ. R² = 0.85 → το μοντέλο εξηγεί το 85% της μεταβολής του y. Το υπόλοιπο 15% οφείλεται σε άλλους παράγοντες ή τυχαίο σφάλμα.</div>
-    </div>
-
-  </div>
-
-  <div class="grid full" style="margin-top:14px">
-    <div class="card purple">
-      <div class="card-label">Μεθοδολογία — βήματα επίλυσης άσκησης παλινδρόμησης</div>
-      <ol class="steps">
-        <li>Κατασκεύασε πίνακα με στήλες: xᵢ, yᵢ, xᵢ², yᵢ², xᵢ·yᵢ. Υπολόγισε τα αθροίσματά τους: Σxᵢ, Σyᵢ, Σxᵢ², Σyᵢ², Σxᵢyᵢ.</li>
-        <li>Υπολόγισε τους μέσους: x̄ = Σxᵢ/n   και   ȳ = Σyᵢ/n.</li>
-        <li>Υπολόγισε τα βοηθητικά αθροίσματα: Sₓₓ, Sᵧᵧ, Sₓᵧ από τους τύπους.</li>
-        <li>Βρες κλίση: β₁ = Sₓᵧ / Sₓₓ   και στη συνέχεια σταθερά: β₀ = ȳ − β₁ · x̄.</li>
-        <li>Γράψε την εξίσωση ευθείας: ŷ = β₀ + β₁ · x.</li>
-        <li>Υπολόγισε r = Sₓᵧ / √(Sₓₓ · Sᵧᵧ) και R² = r². Σχολίασε ισχύ και κατεύθυνση.</li>
-        <li>Για πρόβλεψη: αντικατέστησε x₀ στην εξίσωση: ŷ₀ = β₀ + β₁ · x₀. Μόνο εντός του εύρους των δεδομένων.</li>
-      </ol>
+    <div class="sep"></div>
+    <div class="ftitle">Συμμετρία κατανομής — Bowley</div>
+    <div class="fb">
+      <span class="math">\[ S = \frac{(Q_3 - Q_2) - (Q_2 - Q_1)}{Q_3 - Q_1} \]</span>
+      <span class="desc">\(S > 0\) → θετική ασυμμετρία (ουρά δεξιά) · \(S < 0\) → αρνητική · \(S = 0\) → συμμετρία.</span>
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <div style="text-align:center;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);color:var(--text3);font-size:12px">
-    Πιθανότητες &amp; Στατιστική · Τυπολόγιο εξετάσεων
+</div>
+
+<!-- ===== 4. ΠΙΘΑΝΟΤΗΤΕΣ ===== -->
+<div id="pithanotites" class="sec">
+  <div class="sec-ic" style="background:var(--red-bg);color:var(--red)">P</div>
+  <h2>Πιθανότητες</h2>
+</div>
+<div class="grid">
+
+  <div class="card red">
+    <div class="lbl">Βασικοί ορισμοί και αξιώματα</div>
+    <div class="fb">
+      <span class="math">\[ P(A) = \frac{N(A)}{N(\Omega)} \]</span>
+      <span class="desc">Κλασικός ορισμός: αριθμός ευνοϊκών ενδεχομένων προς συνολικά ισοπίθανα ενδεχόμενα.</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ 0 \leq P(A) \leq 1 \quad \text{και} \quad P(\Omega) = 1 \]</span>
+      <span class="desc">Αξιώματα Kolmogorov: πιθανότητα πάντα μεταξύ 0 και 1. Το βέβαιο ενδεχόμενο έχει \(P = 1\).</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ P(A^c) = 1 - P(A) \]</span>
+      <span class="desc">Συμπληρωματικό: πιθανότητα «να ΜΗΝ συμβεί το \(A\)». Πολύ συχνά χρησιμοποιείται «ανάποδα» για ευκολία.</span>
+    </div>
   </div>
+
+  <div class="card red">
+    <div class="lbl">Ένωση ενδεχομένων</div>
+    <div class="fb">
+      <span class="math">\[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]</span>
+      <span class="desc">Γενικός τύπος για «A ή B». Αφαιρούμε την τομή γιατί αλλιώς την μετράμε δύο φορές.</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ P(A \cup B) = P(A) + P(B) \quad \text{αν } A \cap B = \emptyset \]</span>
+      <span class="desc">Ειδική περίπτωση αμοιβαίως αποκλειόμενων ενδεχομένων: δεν μπορούν να συμβούν ταυτόχρονα.</span>
+    </div>
+  </div>
+
+  <div class="card red">
+    <div class="lbl">Τομή — Πολλαπλασιαστικός κανόνας</div>
+    <div class="fb">
+      <span class="math">\[ P(A \cap B) = P(A) \cdot P(B \mid A) \]</span>
+      <span class="desc">Γενικός τύπος: πιθανότητα να συμβούν ΚΑΙ τα δύο. Ισχύει πάντα.</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ P(A \cap B) = P(A) \cdot P(B) \quad \text{αν } A, B \text{ ανεξάρτητα} \]</span>
+      <span class="desc">Ειδική περίπτωση: η γνώση ότι συνέβη το \(A\) δεν επηρεάζει την πιθανότητα του \(B\).</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ P(A \cap B \cap C) = P(A)\cdot P(B)\cdot P(C) \quad \text{[ανεξ.]} \]</span>
+      <span class="desc">Επέκταση για τρία ανεξάρτητα ενδεχόμενα.</span>
+    </div>
+    <div class="info">Κλασικό «κόλπο»: \(P(\text{τουλάχιστον ένα}) = 1 - P(A^c)\cdot P(B^c)\cdot P(C^c)\)</div>
+  </div>
+
+  <div class="card purple">
+    <div class="lbl">Δεσμευμένη πιθανότητα</div>
+    <div class="fb">
+      <span class="math">\[ P(A \mid B) = \frac{P(A \cap B)}{P(B)} \]</span>
+      <span class="desc">Η πιθανότητα του \(A\) γνωρίζοντας ότι συνέβη το \(B\). Ο δειγματικός χώρος «συρρικνώνεται» στο \(B\).</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ P(B \mid A) = \frac{P(A \cap B)}{P(A)} \]</span>
+      <span class="desc">Αντίστροφα: η πιθανότητα του \(B\) δεδομένου \(A\).</span>
+    </div>
+    <div class="note">Για τράπουλα: μειώνουμε το \(N(\Omega)\) με βάση τη δεδομένη πληροφορία και δουλεύουμε μόνο εντός της συνθήκης.</div>
+  </div>
+
+  <div class="card purple">
+    <div class="lbl">Ολική πιθανότητα και θεώρημα Bayes</div>
+    <div class="fb">
+      <span class="math">\[ P(B) = \sum_{i} P(B \mid A_i)\cdot P(A_i) \]</span>
+      <span class="desc">Ολική πιθανότητα: αν \(A_1, A_2, \ldots, A_n\) διαμερίζουν το \(\Omega\) (αμοιβαίως αποκλειόμενα και εξαντλητικά), τότε \(P(B)\) είναι σταθμικός μέσος.</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ P(A_i \mid B) = \frac{P(B \mid A_i)\cdot P(A_i)}{\displaystyle\sum_{j} P(B \mid A_j)\cdot P(A_j)} \]</span>
+      <span class="desc">Θεώρημα Bayes: «αντιστρέφουμε» τη δεσμευμένη πιθανότητα. Ο παρονομαστής είναι η ολική πιθανότητα \(P(B)\).</span>
+    </div>
+    <div class="vars">
+      <span class="v p">\(P(A_i)\) = prior (προηγούμενη)</span>
+      <span class="v p">\(P(B|A_i)\) = likelihood (εμπιστοσύνη)</span>
+      <span class="v p">\(P(A_i|B)\) = posterior (εκ των υστέρων)</span>
+    </div>
+    <div class="note">Εφαρμογή: γραμμές παραγωγής (ελαττωματικά), διαγνωστικά τεστ (ιός), καιρικές συνθήκες.</div>
+  </div>
+
+</div>
+
+<!-- ===== 5. ΚΑΝΟΝΙΚΗ ===== -->
+<div id="kanoniki" class="sec">
+  <div class="sec-ic" style="background:var(--green-bg);color:var(--green)">N</div>
+  <h2>Κανονική κατανομή</h2>
+</div>
+<div class="grid">
+
+  <div class="card green">
+    <div class="lbl">Τυποποίηση — Z-score</div>
+    <div class="fb">
+      <span class="math">\[ Z = \frac{X - \mu}{\sigma} \]</span>
+      <span class="desc">Μετατρέπει οποιαδήποτε \(X \sim \mathcal{N}(\mu,\,\sigma^2)\) στην τυπική \(Z \sim \mathcal{N}(0,1)\). Εκφράζει πόσες τυπικές αποκλίσεις απέχει η \(X\) από τον μέσο.</span>
+    </div>
+    <div class="vars">
+      <span class="v g">\(\mu\) = μέση τιμή πληθυσμού</span>
+      <span class="v g">\(\sigma\) = τυπ. απόκλιση πληθυσμού</span>
+      <span class="v g">\(Z \sim \mathcal{N}(0,1)\)</span>
+    </div>
+  </div>
+
+  <div class="card green">
+    <div class="lbl">Υπολογισμός πιθανοτήτων — πίνακας \(\Phi(z)\)</div>
+    <div class="fb">
+      <span class="math">\[ P(X < a) = \Phi(z_a) \]</span>
+      <span class="desc">Αριστερή ουρά: διαβάζουμε απευθείας από τον πίνακα τυπικής κανονικής.</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ P(X > a) = 1 - \Phi(z_a) \]</span>
+      <span class="desc">Δεξιά ουρά: συμπλήρωμα αριστερής πιθανότητας.</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ P(a < X < b) = \Phi(z_b) - \Phi(z_a) \]</span>
+      <span class="desc">Ενδιάμεσο διάστημα: αφαιρούμε τις αντίστοιχες τιμές του πίνακα.</span>
+    </div>
+    <div class="note">Βήματα: υπολόγισε \(z = (X-\mu)/\sigma\) → βρες \(\Phi(z)\) από πίνακα → εφάρμοσε τον κατάλληλο τύπο.</div>
+  </div>
+
+  <div class="card green">
+    <div class="lbl">Κατανομή δειγματικής μέσης τιμής</div>
+    <div class="fb">
+      <span class="math">\[ \bar{X} \sim \mathcal{N}\!\left(\mu,\; \frac{\sigma^2}{n}\right) \]</span>
+      <span class="desc">Αν \(X \sim \mathcal{N}(\mu,\sigma^2)\), τότε ο δειγματικός μέσος \(\bar{X}\) δείγματος μεγέθους \(n\) ακολουθεί ακριβώς αυτή την κατανομή.</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \]</span>
+      <span class="desc">Τυποποίηση δειγματικού μέσου. Ο παρονομαστής \(\sigma/\sqrt{n}\) είναι το Τυπικό Σφάλμα (Standard Error).</span>
+    </div>
+    <div class="info">Κεντρικό Οριακό Θεώρημα: ακόμα και αν ο πληθυσμός δεν είναι κανονικός, για \(n \geq 30\) ο \(\bar{X}\) είναι κατά προσέγγιση κανονικός.</div>
+  </div>
+
+</div>
+
+<!-- ===== 6. ΠΑΛΙΝΔΡΟΜΗΣΗ ===== -->
+<div id="palindromisi" class="sec">
+  <div class="sec-ic" style="background:var(--purple-bg);color:var(--purple)">β</div>
+  <h2>Γραμμική παλινδρόμηση και συσχέτιση</h2>
+</div>
+<div class="grid">
+
+  <div class="card purple">
+    <div class="lbl">Εξίσωση ευθείας παλινδρόμησης</div>
+    <div class="fb">
+      <span class="math">\[ \hat{y} = \beta_0 + \beta_1 \cdot x \]</span>
+      <span class="desc">Η ευθεία που ελαχιστοποιεί το άθροισμα τετραγώνων υπολοίπων (Least Squares). Δίνει τη βέλτιστη γραμμική πρόβλεψη.</span>
+    </div>
+    <div class="vars">
+      <span class="v p">\(\hat{y}\) = προβλεπόμενη τιμή</span>
+      <span class="v p">\(\beta_0\) = τεταγμένη επί την αρχή</span>
+      <span class="v p">\(\beta_1\) = κλίση (slope)</span>
+    </div>
+    <div class="note">Η ευθεία διέρχεται πάντα από το σημείο \((\bar{x},\, \bar{y})\). Χρησιμοποίησέ το για έλεγχο ορθότητας.</div>
+  </div>
+
+  <div class="card purple">
+    <div class="lbl">Βοηθητικά αθροίσματα</div>
+    <div class="fb">
+      <span class="math">\[ S_{xx} = \sum_{i=1}^n x_i^2 - \frac{\left(\sum_{i=1}^n x_i\right)^2}{n} \]</span>
+      <span class="desc">Άθροισμα τετραγώνων \(x\): μετρά τη μεταβλητότητα των \(x_i\) γύρω από τον \(\bar{x}\).</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ S_{yy} = \sum_{i=1}^n y_i^2 - \frac{\left(\sum_{i=1}^n y_i\right)^2}{n} \]</span>
+      <span class="desc">Άθροισμα τετραγώνων \(y\): χρειάζεται μόνο για τον \(r\), όχι για την ευθεία.</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ S_{xy} = \sum_{i=1}^n x_i y_i - \frac{\left(\sum_{i=1}^n x_i\right)\!\left(\sum_{i=1}^n y_i\right)}{n} \]</span>
+      <span class="desc">Άθροισμα συνδιακύμανσης: μετρά πώς μεταβάλλονται μαζί \(x\) και \(y\).</span>
+    </div>
+  </div>
+
+  <div class="card purple">
+    <div class="lbl">Υπολογισμός \(\beta_1\) και \(\beta_0\)</div>
+    <div class="fb">
+      <span class="math">\[ \beta_1 = \frac{S_{xy}}{S_{xx}} \]</span>
+      <span class="desc">Κλίση: πόσο μεταβάλλεται το \(\hat{y}\) για κάθε μονάδα αύξησης \(x\). Θετικό → ανοδική σχέση.</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ \beta_0 = \bar{y} - \beta_1 \cdot \bar{x} \]</span>
+      <span class="desc">Σταθερά: υπολογίζεται ΜΕΤΑ τον \(\beta_1\). Είναι η τιμή \(\hat{y}\) όταν \(x = 0\).</span>
+    </div>
+    <div class="note">Σειρά: πρώτα \(\bar{x}, \bar{y}\) → μετά \(S_{xx}, S_{xy}\) → μετά \(\beta_1\) → τελευταίο \(\beta_0\).</div>
+  </div>
+
+  <div class="card purple">
+    <div class="lbl">Συντελεστής συσχέτισης Pearson</div>
+    <div class="fb">
+      <span class="math">\[ r = \frac{S_{xy}}{\sqrt{S_{xx} \cdot S_{yy}}} \]</span>
+      <span class="desc">Μετρά ισχύ και κατεύθυνση γραμμικής σχέσης. Αδιάστατο, πάντα \(-1 \leq r \leq +1\).</span>
+    </div>
+    <div class="scale">
+      <div class="si"><span class="sv" style="color:var(--red)">\(-1\)</span><span class="sl">τέλεια αρνητική</span></div>
+      <div class="si"><span class="sv" style="color:var(--text2)">\(0\)</span><span class="sl">καμία γραμμική</span></div>
+      <div class="si"><span class="sv" style="color:var(--green)">\(+1\)</span><span class="sl">τέλεια θετική</span></div>
+    </div>
+    <div class="note">\(|r| < 0.3\) αδύναμη · \(0.3{-}0.7\) μέτρια · \(> 0.7\) ισχυρή · \(r = \pm 1\) τέλεια γραμμική</div>
+    <div class="warn">Συσχέτιση ≠ αιτιότητα. Ακόμα και \(r = 1\) δεν αποδεικνύει ότι το \(x\) προκαλεί το \(y\).</div>
+  </div>
+
+  <div class="card purple">
+    <div class="lbl">Συντελεστής προσδιορισμού</div>
+    <div class="fb">
+      <span class="math">\[ R^2 = r^2 \]</span>
+      <span class="desc">Το ποσοστό της συνολικής μεταβλητότητας του \(y\) που ερμηνεύεται γραμμικά από το \(x\).</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ R^2 = 1 - \frac{SSE}{SST} \]</span>
+      <span class="desc">\(SSE = \sum(y_i - \hat{y}_i)^2\) = σφάλματα μοντέλου · \(SST = \sum(y_i - \bar{y})^2\) = συνολική μεταβλητότητα.</span>
+    </div>
+    <div class="note">Π.χ. \(R^2 = 0.85\) → το μοντέλο εξηγεί το 85% της μεταβολής του \(y\).</div>
+  </div>
+
+</div>
+
+<div class="grid wide" style="margin-top:14px">
+  <div class="card purple">
+    <div class="lbl">Μεθοδολογία — βήματα επίλυσης</div>
+    <ol class="steps">
+      <li>Κατασκεύασε πίνακα με στήλες: \(x_i,\; y_i,\; x_i^2,\; y_i^2,\; x_i y_i\). Υπολόγισε τα αθροίσματά τους.</li>
+      <li>Υπολόγισε τους μέσους: \(\bar{x} = \dfrac{\sum x_i}{n}\) και \(\bar{y} = \dfrac{\sum y_i}{n}\).</li>
+      <li>Υπολόγισε: \(S_{xx},\; S_{yy},\; S_{xy}\) από τους τύπους παραπάνω.</li>
+      <li>Βρες κλίση \(\beta_1 = S_{xy}/S_{xx}\) και σταθερά \(\beta_0 = \bar{y} - \beta_1\bar{x}\).</li>
+      <li>Γράψε την εξίσωση: \(\hat{y} = \beta_0 + \beta_1 x\).</li>
+      <li>Υπολόγισε \(r = S_{xy}/\sqrt{S_{xx}\cdot S_{yy}}\) και \(R^2 = r^2\). Σχολίασε ισχύ και κατεύθυνση.</li>
+      <li>Για πρόβλεψη: αντικατέστησε \(x_0\) στην εξίσωση: \(\hat{y}_0 = \beta_0 + \beta_1 x_0\). Μόνο εντός του εύρους των δεδομένων.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="footer">Πιθανότητες &amp; Στατιστική · Τυπολόγιο εξετάσεων</div>
 
 </div>
 </body>
