@@ -215,12 +215,19 @@ window.MathJax = {
       <span class="math">\[ M_o = \text{τιμή με } \max(\nu_i) \]</span>
       <span class="desc">Η τιμή που εμφανίζεται με τη μεγαλύτερη συχνότητα. Μπορεί να υπάρχουν περισσότερες (bimodal, multimodal) ή καμία.</span>
     </div>
-    <div class="ftitle">Για ομαδοποιημένα δεδομένα</div>
+    <div class="ftitle">Για ομαδοποιημένα — βήματα</div>
     <div class="fb">
-      <span class="math">\[ M_o = L + \frac{d_1}{d_1 + d_2} \cdot c \]</span>
-      <span class="desc">\(d_1\) = διαφορά συχνότητας από προηγούμενη κλάση · \(d_2\) = διαφορά από επόμενη κλάση.</span>
+      <span class="math">\[ \textbf{Βήμα 1:} \quad \text{Βρες κλάση με } \max(\nu_i) \to \text{επικρατούσα κλάση} \]</span>
+      <span class="desc">Κοιτάμε τη στήλη συχνοτήτων και εντοπίζουμε ποια κλάση έχει τη μεγαλύτερη.</span>
     </div>
-    <div class="note">Χρησιμοποιείται κυρίως για ποιοτικά δεδομένα ή όταν θέλουμε την πιο «τυπική» τιμή.</div>
+    <div class="fb">
+      <span class="math">\[ \textbf{Βήμα 2:} \quad d_1 = \nu_{mo} - \nu_{mo-1} \quad d_2 = \nu_{mo} - \nu_{mo+1} \]</span>
+      <span class="desc">\(\nu_{mo}\) = συχν. επικρατούσας · \(\nu_{mo-1}\) = συχν. προηγούμενης · \(\nu_{mo+1}\) = συχν. επόμενης κλάσης.</span>
+    </div>
+    <div class="fb">
+      <span class="math">\[ \textbf{Βήμα 3:} \quad M_o = L + \frac{d_1}{d_1 + d_2} \cdot c \]</span>
+      <span class="desc">\(L\) = κάτω όριο επικρατούσας κλάσης · \(c\) = πλάτος κλάσης.</span>
+    </div>
   </div>
 
 </div>
