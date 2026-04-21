@@ -202,7 +202,7 @@ window.MathJax = {
     <div class="warn">Μετασχηματισμός: αν \(y_i = k\cdot x_i + c\), τότε \(\bar{y} = k\cdot\bar{x} + c\). Πολλαπλασιασμός κλιμακώνει, πρόσθεση σταθεράς μόνο μετατοπίζει.</div>
   </div>
 
-  <div class="card teal">
+  <div class="card blue">
     <div class="lbl">Διάμεσος — Median</div>
     <div class="fb">
       <span class="math">\[ M = x_{\frac{n+1}{2}} \quad (n \text{ μονός}) \]</span>
@@ -219,28 +219,28 @@ window.MathJax = {
       <span class="desc">Εντοπίζουμε πρώτα ποια κλάση «περιέχει» τη θέση \(n/2\) (συγκρίνουμε με αθροιστικές \(N_i\)). Μετά παρεμβάλλουμε γραμμικά εντός της κλάσης.</span>
     </div>
     <div class="vars">
-      <span class="v t">\(L\) = κάτω όριο κλάσης</span>
-      <span class="v t">\(F_{i-1}\) = αθρ. συχν. προηγ. κλάσης</span>
-      <span class="v t">\(\nu_i\) = απόλ. συχν. κλάσης</span>
-      <span class="v t">\(c\) = πλάτος κλάσης</span>
+      <span class="v b">\(L\) = κάτω όριο κλάσης</span>
+      <span class="v b">\(F_{i-1}\) = αθρ. συχν. προηγ. κλάσης</span>
+      <span class="v b">\(\nu_i\) = απόλ. συχν. κλάσης</span>
+      <span class="v b">\(c\) = πλάτος κλάσης</span>
     </div>
     <div class="note">Η διάμεσος είναι ανθεκτική στις ακραίες τιμές — προτιμάται έναντι μέσου όταν τα δεδομένα έχουν outliers.</div>
   </div>
 
-  <div class="card amber">
+  <div class="card blue">
     <div class="lbl">Επικρατούσα τιμή — Mode</div>
     <div class="fb">
       <span class="math">\[ M_o = \text{τιμή με } \max(\nu_i) \]</span>
       <span class="desc">Η τιμή που εμφανίζεται με τη μεγαλύτερη συχνότητα. Μπορεί να υπάρχουν περισσότερες (bimodal, multimodal) ή καμία.</span>
     </div>
     <div class="ftitle">Για ομαδοποιημένα — βήματα</div>
-    <div class="ftitle" style="margin-top:8px;color:var(--amber)">① Βρες την κλάση με τη μεγαλύτερη συχνότητα → επικρατούσα κλάση</div>
-    <div class="ftitle" style="color:var(--amber)">② Υπολόγισε τις διαφορές από τις γειτονικές κλάσεις</div>
+    <div class="ftitle" style="margin-top:8px;color:var(--blue)">① Βρες την κλάση με τη μεγαλύτερη συχνότητα → επικρατούσα κλάση</div>
+    <div class="ftitle" style="color:var(--blue)">② Υπολόγισε τις διαφορές από τις γειτονικές κλάσεις</div>
     <div class="fb">
       <span class="math">\[ d_1 = \nu_{mo} - \nu_{mo-1} \qquad d_2 = \nu_{mo} - \nu_{mo+1} \]</span>
       <span class="desc">\(\nu_{mo}\) = συχν. επικρατούσας · \(\nu_{mo-1}\) = συχν. προηγούμενης · \(\nu_{mo+1}\) = συχν. επόμενης</span>
     </div>
-    <div class="ftitle" style="color:var(--amber)">③ Εφάρμοσε τον τύπο</div>
+    <div class="ftitle" style="color:var(--blue)">③ Εφάρμοσε τον τύπο</div>
     <div class="fb">
       <span class="math">\[ M_o = L + \frac{d_1}{d_1 + d_2} \cdot c \]</span>
       <span class="desc">\(L\) = κάτω όριο επικρατούσας κλάσης · \(c\) = πλάτος κλάσης</span>
@@ -270,7 +270,7 @@ window.MathJax = {
     <div class="note">Επιλογή \(k\): \(n{<}20 \to k{=}5\) · \(n{=}20{-}50 \to k{=}6\) · \(n{=}50{-}100 \to k{=}7\) · \(n{=}100{-}200 \to k{=}8\) · \(n{\geq}1000 \to k{=}12\)</div>
   </div>
 
-  <div class="card blue">
+  <div class="card teal">
     <div class="lbl">Διακύμανση — Variance</div>
     <div class="fb">
       <span class="math">\[ s^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^2 \]</span>
@@ -307,7 +307,7 @@ window.MathJax = {
     </div>
   </div>
 
-  <div class="card amber">
+  <div class="card teal">
     <div class="lbl">Συντελεστής μεταβλητότητας — CV</div>
     <div class="fb">
       <span class="math">\[ CV = \frac{s}{\bar{x}} \cdot 100\% \]</span>
@@ -429,7 +429,7 @@ window.MathJax = {
     <div class="info">Κλασικό «κόλπο»: \(P(\text{τουλάχιστον ένα}) = 1 - P(A^c)\cdot P(B^c)\cdot P(C^c)\)</div>
   </div>
 
-  <div class="card purple">
+  <div class="card red">
     <div class="lbl">Δεσμευμένη πιθανότητα</div>
     <div class="fb">
       <span class="math">\[ P(A \mid B) = \frac{P(A \cap B)}{P(B)} \]</span>
@@ -442,7 +442,7 @@ window.MathJax = {
     <div class="note">Για τράπουλα: μειώνουμε το \(N(\Omega)\) με βάση τη δεδομένη πληροφορία και δουλεύουμε μόνο εντός της συνθήκης.</div>
   </div>
 
-  <div class="card purple">
+  <div class="card red">
     <div class="lbl">Ολική πιθανότητα και θεώρημα Bayes</div>
     <div class="fb">
       <span class="math">\[ P(B) = \sum_{i} P(B \mid A_i)\cdot P(A_i) \]</span>
@@ -453,9 +453,9 @@ window.MathJax = {
       <span class="desc">Θεώρημα Bayes: «αντιστρέφουμε» τη δεσμευμένη πιθανότητα. Ο παρονομαστής είναι η ολική πιθανότητα \(P(B)\).</span>
     </div>
     <div class="vars">
-      <span class="v p">\(P(A_i)\) = prior (προηγούμενη)</span>
-      <span class="v p">\(P(B|A_i)\) = likelihood (εμπιστοσύνη)</span>
-      <span class="v p">\(P(A_i|B)\) = posterior (εκ των υστέρων)</span>
+      <span class="v r">\(P(A_i)\) = prior (προηγούμενη)</span>
+      <span class="v r">\(P(B|A_i)\) = likelihood (εμπιστοσύνη)</span>
+      <span class="v r">\(P(A_i|B)\) = posterior (εκ των υστέρων)</span>
     </div>
     <div class="note">Εφαρμογή: γραμμές παραγωγής (ελαττωματικά), διαγνωστικά τεστ (ιός), καιρικές συνθήκες.</div>
   </div>
