@@ -49,9 +49,19 @@ window.MathJax = {
   .sec h2 { font-size: 17px; font-weight: 600; color: var(--text); }
 
   /* GRID & CARD */
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    align-items: start;
+  }
   .grid.wide { grid-template-columns: 1fr; }
-  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 1.1rem 1.2rem; margin-top: 0; }
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 1.1rem 1.2rem;
+  }
   .card.blue   { border-top: 2px solid var(--blue); }
   .card.teal   { border-top: 2px solid var(--teal); }
   .card.amber  { border-top: 2px solid var(--amber); }
@@ -115,10 +125,18 @@ window.MathJax = {
 
   .footer { text-align: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--text3); font-size: 12px; }
 
-  @media (max-width: 600px) {
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
     .grid { grid-template-columns: 1fr; }
-    .page { padding: 1rem 1rem 3rem; }
-    .header h1 { font-size: 20px; }
+    .page { padding: 0.75rem 0.75rem 3rem; }
+    .header { padding: 1.5rem 0 1.2rem; }
+    .header h1 { font-size: 19px; }
+    .header p { font-size: 12px; }
+    .sec h2 { font-size: 15px; }
+    .fb { padding: 8px 10px; }
+    mjx-container { font-size: 90% !important; }
   }
 </style>
 </head>
