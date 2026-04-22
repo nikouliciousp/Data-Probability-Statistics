@@ -347,14 +347,21 @@ window.MathJax = {
 
   <div class="card teal">
     <div class="lbl">Διακύμανση — Variance</div>
+    <div class="ftitle">Πληθυσμιακή διακύμανση — διαιρούμε με \(n\)</div>
     <div class="fb">
       <span class="math">\[ s^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^2 \]</span>
-      <span class="desc">Ορισμός: μέσο τετραγωνικό άθροισμα αποκλίσεων από τον μέσο. Διαιρούμε με \(n\) (πληθυσμιακός ορισμός). Σε άλλα πλαίσια χρησιμοποιείται \(n-1\) για αμερόληπτη εκτίμηση δείγματος.</span>
+      <span class="desc">Όταν έχουμε <strong>ολόκληρο τον πληθυσμό</strong>. Χρησιμοποιούμε \(\mu\) (πληθυσμιακός μέσος) και διαιρούμε με \(n\).</span>
     </div>
-    <div class="ftitle">Παραλλαγή — υπολογιστικός τύπος</div>
+    <div class="ftitle">Δειγματική διακύμανση — διαιρούμε με \(n-1\)</div>
+    <div class="fb">
+      <span class="math">\[ s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2 \]</span>
+      <span class="desc">Όταν έχουμε <strong>δείγμα</strong> από μεγαλύτερο πληθυσμό. Ο \(n-1\) (βαθμοί ελευθερίας) δίνει αμερόληπτη εκτίμηση του \(s^2\).</span>
+    </div>
+    <div class="note">Στο μάθημα αυτό χρησιμοποιούμε \(n\). Αν δεις \(n-1\) σε άσκηση, η λογική είναι ίδια — απλώς αλλάζει ο παρονομαστής.</div>
+    <div class="ftitle">Υπολογιστικός τύπος (και για τις δύο παραλλαγές)</div>
     <div class="fb">
       <span class="math">\[ s^2 = \frac{1}{n}\sum_{i=1}^{n} x_i^2 - \bar{x}^2 \]</span>
-      <span class="desc">Αλγεβρικά ισοδύναμος, πιο γρήγορος: μέσος τετράγωνο τιμών μείον τετράγωνο μέσου.</span>
+      <span class="desc">Αλγεβρικά ισοδύναμος, πιο γρήγορος για χειρόγραφο υπολογισμό.</span>
     </div>
     <div class="ftitle">Παραλλαγή — ομαδοποιημένα δεδομένα</div>
     <div class="fb">
@@ -380,6 +387,7 @@ window.MathJax = {
       <span class="v t">\(\sigma\) = τυπ. απόκλιση πληθυσμού</span>
       <span class="v t">\(n\) = μέγεθος δείγματος</span>
     </div>
+    <div class="note">Στην πράξη το \(\sigma\) του πληθυσμού συνήθως δεν είναι γνωστό — το αντικαθιστούμε με το \(s\) του δείγματος: \(\sigma_{\bar{x}} \approx s/\sqrt{n}\).</div>
   </div>
 
   <div class="card teal">
