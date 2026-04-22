@@ -329,12 +329,12 @@ window.MathJax = {
     <div class="sep"></div>
     <div class="ftitle">Παρεμβολή για ομαδοποιημένα δεδομένα</div>
     <div class="fb">
-      <span class="math">\[ M = L + \frac{\dfrac{n}{2} - F_{i-1}}{\nu_i} \cdot c \]</span>
+      <span class="math">\[ M = L + \frac{\dfrac{n}{2} - N_{i-1}}{\nu_i} \cdot c \]</span>
       <span class="desc">Εντοπίζουμε πρώτα ποια κλάση «περιέχει» τη θέση \(n/2\) (συγκρίνουμε με αθροιστικές \(N_i\)). Μετά παρεμβάλλουμε γραμμικά εντός της κλάσης.</span>
     </div>
     <div class="vars">
       <span class="v b">\(L\) = κάτω όριο κλάσης</span>
-      <span class="v b">\(F_{i-1}\) = αθρ. συχν. προηγ. κλάσης</span>
+      <span class="v b">\(N_{i-1}\) = αθρ. συχν. προηγ. κλάσης</span>
       <span class="v b">\(\nu_i\) = απόλ. συχν. κλάσης</span>
       <span class="v b">\(c\) = πλάτος κλάσης</span>
     </div>
@@ -485,12 +485,12 @@ window.MathJax = {
   <div class="card amber">
     <div class="lbl">Υπολογισμός τιμής τεταρτημορίου (παρεμβολή)</div>
     <div class="fb">
-      <span class="math">\[ Q_i = L + \frac{\dfrac{i \cdot n}{4} - F_{i-1}}{\nu_i} \cdot c \]</span>
+      <span class="math">\[ Q_i = L + \frac{\dfrac{i \cdot n}{4} - N_{i-1}}{\nu_i} \cdot c \]</span>
       <span class="desc">Γενικός τύπος για \(i = 1, 2, 3\). Ίδια λογική παρεμβολής με τη Διάμεσο — απλώς αλλάζει το \(i\).</span>
     </div>
     <div class="vars">
       <span class="v a">\(L\) = κάτω όριο κλάσης \(Q_i\)</span>
-      <span class="v a">\(F_{i-1}\) = αθρ. απόλυτη συχν. κλάσεων πριν</span>
+      <span class="v a">\(N_{i-1}\) = αθρ. απόλυτη συχν. κλάσεων πριν</span>
       <span class="v a">\(\nu_i\) = απόλ. συχν. κλάσης</span>
       <span class="v a">\(c\) = πλάτος κλάσης</span>
       <span class="v a">\(i\) = 1, 2 ή 3</span>
@@ -511,7 +511,11 @@ window.MathJax = {
     <div class="ftitle">Συμμετρία κατανομής — Bowley</div>
     <div class="fb">
       <span class="math">\[ S = \frac{(Q_3 - Q_2) - (Q_2 - Q_1)}{Q_3 - Q_1} \]</span>
-      <span class="desc">\(S > 0\) → θετική ασυμμετρία (ουρά δεξιά) · \(S < 0\) → αρνητική · \(S = 0\) → συμμετρία.</span>
+    </div>
+    <div class="vars">
+      <span class="v a">\(S = 0\) → συμμετρία</span>
+      <span class="v a">\(S > 0\) → θετική ασυμμετρία (ουρά δεξιά)</span>
+      <span class="v a">\(S < 0\) → αρνητική ασυμμετρία (ουρά αριστερά)</span>
     </div>
   </div>
 
@@ -544,13 +548,13 @@ window.MathJax = {
     </div>
     <div class="ftitle">Παρεμβολή για ομαδοποιημένα δεδομένα</div>
     <div class="fb">
-      <span class="math">\[ P_k = L + \frac{\dfrac{k \cdot n}{100} - F_{i-1}}{\nu_i} \cdot c \]</span>
+      <span class="math">\[ P_k = L + \frac{\dfrac{k \cdot n}{100} - N_{i-1}}{\nu_i} \cdot c \]</span>
       <span class="desc">Ίδια λογική παρεμβολής με τεταρτημόρια και διάμεσο — αλλάζει μόνο ο παράγοντας \(k/100\) αντί για \(i/4\).</span>
     </div>
     <div class="vars">
       <span class="v a">\(k\) = τάξη εκατοστημορίου (1–99)</span>
       <span class="v a">\(L\) = κάτω όριο κλάσης \(P_k\)</span>
-      <span class="v a">\(F_{i-1}\) = αθρ. απόλ. συχν. κλάσεων πριν</span>
+      <span class="v a">\(N_{i-1}\) = αθρ. απόλ. συχν. κλάσεων πριν</span>
       <span class="v a">\(\nu_i\) = απόλ. συχν. κλάσης</span>
       <span class="v a">\(c\) = πλάτος κλάσης</span>
     </div>
