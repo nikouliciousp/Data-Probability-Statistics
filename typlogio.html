@@ -33,36 +33,21 @@ window.MathJax = {
 
   /* HEADER */
   .header { margin-bottom: 2rem; }
-  .header-card {
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: var(--r);
-    padding: 2rem 2rem 1.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .header-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--blue), var(--teal), var(--amber), var(--red), var(--green), var(--purple));
-  }
-  .header h1 {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: -0.5px;
-    margin-bottom: 6px;
-  }
+  .header-card { background: var(--bg2); border: 1px solid var(--border2); border-radius: var(--r); padding: 2rem 2rem 1.5rem; text-align: center; position: relative; overflow: hidden; }
+  .header-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--teal), var(--amber), var(--red), var(--green), var(--purple)); }
+  .header h1 { font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.5px; margin-bottom: 6px; }
   .header h1 span { color: var(--text2); font-weight: 400; }
   .header p { color: var(--text2); font-size: 13px; margin-bottom: 1.2rem; }
   .badge-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
   .badge { font-size: 11px; padding: 3px 12px; border-radius: 20px; font-weight: 600; border: 1px solid; text-decoration: none; cursor: pointer; transition: opacity 0.15s; display: inline-block; }
   .badge:hover { opacity: 0.75; }
-
-
+  .badge.blue   { background: var(--blue-bg);   color: var(--blue);   border-color: var(--blue-bd); }
+  .badge.teal   { background: var(--teal-bg);   color: var(--teal);   border-color: var(--teal-bd); }
+  .badge.amber  { background: var(--amber-bg);  color: var(--amber);  border-color: var(--amber-bd); }
+  .badge.red    { background: var(--red-bg);    color: var(--red);    border-color: var(--red-bd); }
+  .badge.purple { background: var(--purple-bg); color: var(--purple); border-color: var(--purple-bd); }
+  .badge.green  { background: var(--green-bg);  color: var(--green);  border-color: var(--green-bd); }
+  .badge.coral  { background: var(--coral-bg);  color: var(--coral);  border-color: var(--coral-bd); }
 
   /* SECTION */
   .sec { display: flex; align-items: center; gap: 12px; margin: 2.5rem 0 1rem; padding-bottom: 10px; border-bottom: 1px solid var(--border2); }
@@ -77,19 +62,9 @@ window.MathJax = {
   .sec h2 { font-size: 17px; font-weight: 600; color: var(--text); }
 
   /* GRID & CARD */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 14px;
-    align-items: start;
-  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; align-items: start; }
   .grid.wide { grid-template-columns: 1fr; }
-  .card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    padding: 1.1rem 1.2rem;
-  }
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 1.1rem 1.2rem; }
   .card.blue   { border-top: 2px solid var(--blue); }
   .card.teal   { border-top: 2px solid var(--teal); }
   .card.amber  { border-top: 2px solid var(--amber); }
@@ -98,8 +73,9 @@ window.MathJax = {
   .card.green  { border-top: 2px solid var(--green); }
   .card.coral  { border-top: 2px solid var(--coral); }
 
-  /* CARD LABEL */
-  .lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  /* CARD LABEL — flex row with optional example button */
+  .lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+  .lbl-text { flex: 1; }
   .blue   .lbl { color: var(--blue); }
   .teal   .lbl { color: var(--teal); }
   .amber  .lbl { color: var(--amber); }
@@ -108,7 +84,23 @@ window.MathJax = {
   .green  .lbl { color: var(--green); }
   .coral  .lbl { color: var(--coral); }
 
-  /* FTITLE — same color as lbl, inherits from card context */
+  /* EXAMPLE BUTTON */
+  .ex-btn {
+    font-size: 9px; padding: 2px 8px; border-radius: 10px; font-weight: 600;
+    cursor: pointer; background: transparent; transition: all 0.15s;
+    white-space: nowrap; flex-shrink: 0; letter-spacing: 0.02em; border: 1px solid;
+    text-transform: none;
+  }
+  .blue   .ex-btn { color: var(--blue);   border-color: var(--blue-bd);   background: var(--blue-bg); }
+  .teal   .ex-btn { color: var(--teal);   border-color: var(--teal-bd);   background: var(--teal-bg); }
+  .amber  .ex-btn { color: var(--amber);  border-color: var(--amber-bd);  background: var(--amber-bg); }
+  .red    .ex-btn { color: var(--red);    border-color: var(--red-bd);    background: var(--red-bg); }
+  .purple .ex-btn { color: var(--purple); border-color: var(--purple-bd); background: var(--purple-bg); }
+  .green  .ex-btn { color: var(--green);  border-color: var(--green-bd);  background: var(--green-bg); }
+  .ex-btn:hover { opacity: 0.75; transform: scale(1.05); }
+
+  /* FTITLE */
+  .ftitle { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text3); margin: 12px 0 4px; }
   .blue   .ftitle { color: var(--blue); }
   .teal   .ftitle { color: var(--teal); }
   .amber  .ftitle { color: var(--amber); }
@@ -116,8 +108,6 @@ window.MathJax = {
   .purple .ftitle { color: var(--purple); }
   .green  .ftitle { color: var(--green); }
   .coral  .ftitle { color: var(--coral); }
-
-  /* FTITLE-ACCENT — lighter shade for step labels ① ② ③ */
   .blue   .ftitle-accent { color: #85B7EB; }
   .teal   .ftitle-accent { color: #5DCAA5; }
   .amber  .ftitle-accent { color: #EF9F27; }
@@ -125,15 +115,6 @@ window.MathJax = {
   .purple .ftitle-accent { color: #AFA9EC; }
   .green  .ftitle-accent { color: #97C459; }
   .coral  .ftitle-accent { color: #fdba74; }
-
-  /* BADGE color variants */
-  .badge.blue   { background: var(--blue-bg);   color: var(--blue);   border-color: var(--blue-bd); }
-  .badge.teal   { background: var(--teal-bg);   color: var(--teal);   border-color: var(--teal-bd); }
-  .badge.amber  { background: var(--amber-bg);  color: var(--amber);  border-color: var(--amber-bd); }
-  .badge.red    { background: var(--red-bg);    color: var(--red);    border-color: var(--red-bd); }
-  .badge.purple { background: var(--purple-bg); color: var(--purple); border-color: var(--purple-bd); }
-  .badge.green  { background: var(--green-bg);  color: var(--green);  border-color: var(--green-bd); }
-  .badge.coral  { background: var(--coral-bg);  color: var(--coral);  border-color: var(--coral-bd); }
 
   /* FORMULA BLOCK */
   .fb { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--rs); padding: 10px 14px; margin: 8px 0; }
@@ -144,36 +125,24 @@ window.MathJax = {
   .purple .fb { border-left: 2px solid var(--purple-bd); }
   .green  .fb { border-left: 2px solid var(--green-bd); }
   .coral  .fb { border-left: 2px solid var(--coral-bd); }
-
   .fb .math { display: block; font-size: 15px; color: var(--text); padding: 4px 0; overflow-x: auto; }
   .fb .desc { font-size: 12px; color: var(--text2); line-height: 1.55; margin-top: 6px; display: block; }
 
-  .ftitle { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text3); margin: 12px 0 4px; }
   .sep { height: 1px; background: var(--border); margin: 12px 0; }
 
   /* VARS */
   .vars { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 6px; margin-top: 10px; }
-  .v { font-size: 11.5px; padding: 5px 10px; border-radius: 5px; font-weight: 500; border: 1px solid; line-height: 1.4; display: flex; align-items: center; gap: 4px; }
+  .v { font-size: 11.5px; padding: 5px 10px; border-radius: 5px; font-weight: 500; border: 1px solid; line-height: 1.4; }
   .v.b { background: var(--blue-bg);   color: var(--blue);   border-color: var(--blue-bd); }
   .v.t { background: var(--teal-bg);   color: var(--teal);   border-color: var(--teal-bd); }
   .v.a { background: var(--amber-bg);  color: var(--amber);  border-color: var(--amber-bd); }
   .v.r { background: var(--red-bg);    color: var(--red);    border-color: var(--red-bd); }
   .v.p { background: var(--purple-bg); color: var(--purple); border-color: var(--purple-bd); }
   .v.g { background: var(--green-bg);  color: var(--green);  border-color: var(--green-bd); }
-  .v.c { background: var(--coral-bg); color: var(--coral); border-color: var(--coral-bd); }
+  .v.c { background: var(--coral-bg);  color: var(--coral);  border-color: var(--coral-bd); }
 
-  /* NOTES — base */
-  .note, .warn, .info {
-    font-size: 12px;
-    padding: 9px 13px;
-    border-radius: var(--rs);
-    border-left: 2px solid;
-    margin-top: 8px;
-    line-height: 1.6;
-    color: rgba(232,234,240,0.75);
-  }
-
-  /* note: same as warn/info */
+  /* NOTES */
+  .note, .warn, .info { font-size: 12px; padding: 9px 13px; border-radius: var(--rs); border-left: 2px solid; margin-top: 8px; line-height: 1.6; color: rgba(232,234,240,0.75); }
   .blue   .note { background: rgba(79,142,247,0.12);   border-color: var(--blue); }
   .teal   .note { background: rgba(46,217,163,0.12);   border-color: var(--teal); }
   .amber  .note { background: rgba(245,166,35,0.12);   border-color: var(--amber); }
@@ -181,8 +150,6 @@ window.MathJax = {
   .purple .note { background: rgba(167,139,250,0.12);  border-color: var(--purple); }
   .green  .note { background: rgba(74,222,128,0.12);   border-color: var(--green); }
   .coral  .note { background: rgba(249,115,22,0.12);   border-color: var(--coral); }
-
-  /* warn: slightly more opaque, same card color */
   .blue   .warn { background: rgba(79,142,247,0.12);   border-color: var(--blue); }
   .teal   .warn { background: rgba(46,217,163,0.12);   border-color: var(--teal); }
   .amber  .warn { background: rgba(245,166,35,0.12);   border-color: var(--amber); }
@@ -190,8 +157,6 @@ window.MathJax = {
   .purple .warn { background: rgba(167,139,250,0.12);  border-color: var(--purple); }
   .green  .warn { background: rgba(74,222,128,0.12);   border-color: var(--green); }
   .coral  .warn { background: rgba(249,115,22,0.12);   border-color: var(--coral); }
-
-  /* info: same as warn — accent highlight */
   .blue   .info { background: rgba(79,142,247,0.12);   border-color: var(--blue); }
   .teal   .info { background: rgba(46,217,163,0.12);   border-color: var(--teal); }
   .amber  .info { background: rgba(245,166,35,0.12);   border-color: var(--amber); }
@@ -199,8 +164,6 @@ window.MathJax = {
   .purple .info { background: rgba(167,139,250,0.12);  border-color: var(--purple); }
   .green  .info { background: rgba(74,222,128,0.12);   border-color: var(--green); }
   .coral  .info { background: rgba(249,115,22,0.12);   border-color: var(--coral); }
-
-  /* MathJax inside notes stays visible */
   .note mjx-container, .warn mjx-container, .info mjx-container { color: var(--text) !important; }
 
   /* SCALE */
@@ -209,55 +172,44 @@ window.MathJax = {
   .sv { font-size: 17px; font-weight: 700; display: block; }
   .sl { font-size: 10px; display: block; margin-top: 2px; color: var(--text2); }
 
-
-
-  /* MathJax overrides */
   mjx-container { color: var(--text) !important; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
 
+  /* FOOTER */
   .footer { text-align: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--text3); font-size: 12px; }
 
   /* BACK TO TOP */
-  .btt {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    color: var(--text2);
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    text-decoration: none;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(8px);
-    transition: opacity 0.25s, transform 0.25s, border-color 0.15s;
-    z-index: 100;
-  }
-  .btt.visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
+  .btt { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 42px; height: 42px; border-radius: 50%; background: var(--bg2); border: 1px solid var(--border2); color: var(--text2); font-size: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity 0.25s, transform 0.25s; z-index: 100; }
+  .btt.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
   .btt:hover { border-color: var(--text2); color: var(--text); }
 
-  @media (max-width: 900px) {
-    .grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-  }
+  /* MODAL */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+  .modal { background: var(--bg2); border: 1px solid var(--border2); border-radius: var(--r); max-width: 640px; width: 100%; max-height: 88vh; overflow-y: auto; position: relative; transform: translateY(14px); transition: transform 0.22s; }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-top { position: sticky; top: 0; background: var(--bg2); z-index: 1; border-radius: var(--r) var(--r) 0 0; padding: 1rem 1.2rem 0.7rem; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .modal-top-left { display: flex; flex-direction: column; gap: 3px; }
+  .modal-cat { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text3); }
+  .modal-title { font-size: 15px; font-weight: 600; color: var(--text); }
+  .modal-close { width: 30px; height: 30px; border-radius: 50%; background: var(--bg3); border: 1px solid var(--border); color: var(--text2); font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; line-height: 1; }
+  .modal-close:hover { background: var(--border2); color: var(--text); }
+  .modal-body { padding: 1.1rem 1.2rem 1.6rem; }
+  .modal-section { margin-bottom: 1.1rem; }
+  .modal-section-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 7px; padding: 3px 0; border-bottom: 1px solid var(--border); }
+  .modal-section-title.ask  { color: var(--amber); }
+  .modal-section-title.sol  { color: var(--teal); }
+  .modal-section-title.int  { color: var(--blue); }
+  .modal .fb { margin: 6px 0; }
+
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); } }
   @media (max-width: 560px) {
     .grid { grid-template-columns: 1fr !important; }
     .page { padding: 0.75rem 0.75rem 3rem; }
     .header-card { padding: 1.2rem 1rem 1rem; }
     .header h1 { font-size: 20px; }
-    .header p { font-size: 12px; }
     .sec h2 { font-size: 15px; }
-    .fb { padding: 8px 10px; }
+    .modal { max-height: 94vh; }
     mjx-container { font-size: 90% !important; }
   }
 </style>
@@ -271,18 +223,32 @@ window.MathJax = {
     <h1>ΤΥΠΟΛΟΓΙΟ<br>Πιθανότητες &amp; Στατιστική</h1>
     <p>Τύποι · Παραλλαγές · Ερμηνεία</p>
     <div class="badge-row">
-      <a href="#thesi" class="badge blue">Μέτρα Θέσης</a>
-      <a href="#diaspora" class="badge teal">Διασπορά</a>
+      <a href="#thesi"        class="badge blue">Μέτρα Θέσης</a>
+      <a href="#diaspora"     class="badge teal">Διασπορά</a>
       <a href="#tetartimoria" class="badge amber">Τεταρτημόρια</a>
       <a href="#pithanotites" class="badge red">Πιθανότητες</a>
-      <a href="#kanoniki" class="badge green">Κανονική Κατανομή</a>
+      <a href="#kanoniki"     class="badge green">Κανονική Κατανομή</a>
       <a href="#palindromisi" class="badge purple">Παλινδρόμηση</a>
-      <a href="#diagrammata" class="badge coral">Διαγράμματα</a>
+      <a href="#diagrammata"  class="badge coral">Διαγράμματα</a>
     </div>
   </div>
 </div>
 
-
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal">
+    <div class="modal-top">
+      <div class="modal-top-left">
+        <span class="modal-cat" id="modalCat">Παράδειγμα</span>
+        <span class="modal-title" id="modalTitle">—</span>
+      </div>
+      <button class="modal-close" onclick="closeModal()">&#215;</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- content injected by JS -->
+    </div>
+  </div>
+</div>
 
 <!-- ===== 1. ΜΕΣΑ ΘΕΣΗΣ ===== -->
 <div id="thesi" class="sec">
@@ -292,7 +258,7 @@ window.MathJax = {
 <div class="grid">
 
   <div class="card blue">
-    <div class="lbl">Μέση τιμή — Mean</div>
+    <div class="lbl"><span class="lbl-text">Μέση τιμή — Mean</span><button class="ex-btn" onclick="openModal('mean')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ \bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i \]</span>
       <span class="desc">Για ακατέργαστα δεδομένα: άθροισμα όλων των τιμών διαιρεμένο με το πλήθος \(n\). Εκφράζει το «κέντρο βάρους» του δείγματος.</span>
@@ -317,7 +283,7 @@ window.MathJax = {
   </div>
 
   <div class="card blue">
-    <div class="lbl">Διάμεσος — Median</div>
+    <div class="lbl"><span class="lbl-text">Διάμεσος — Median</span><button class="ex-btn" onclick="openModal('median')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ M = x_{\left(\frac{n+1}{2}\right)} \quad (n \text{ μονός, ακέραιο αποτέλεσμα}) \]</span>
       <span class="desc">Η τιμή στη θέση \(\tfrac{n+1}{2}\) αφού ταξινομηθούν αύξοντα. Ισχύει μόνο για μονό \(n\) ώστε ο δείκτης να είναι ακέραιος.</span>
@@ -330,7 +296,7 @@ window.MathJax = {
     <div class="ftitle">Παρεμβολή για ομαδοποιημένα δεδομένα</div>
     <div class="fb">
       <span class="math">\[ M = L + \frac{\dfrac{n}{2} - N_{i-1}}{\nu_i} \cdot c \]</span>
-      <span class="desc">Εντοπίζουμε πρώτα ποια κλάση «περιέχει» τη θέση \(n/2\) (συγκρίνουμε με αθροιστικές \(N_i\)). Μετά παρεμβάλλουμε γραμμικά εντός της κλάσης.</span>
+      <span class="desc">Εντοπίζουμε πρώτα ποια κλάση «περιέχει» τη θέση \(n/2\). Μετά παρεμβάλλουμε γραμμικά εντός της κλάσης.</span>
     </div>
     <div class="vars">
       <span class="v b">\(L\) = κάτω όριο κλάσης</span>
@@ -342,7 +308,7 @@ window.MathJax = {
   </div>
 
   <div class="card blue">
-    <div class="lbl">Επικρατούσα τιμή — Mode</div>
+    <div class="lbl"><span class="lbl-text">Επικρατούσα τιμή — Mode</span><button class="ex-btn" onclick="openModal('mode')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ M_o = \text{τιμή με } \max(\nu_i) \]</span>
       <span class="desc">Η τιμή που εμφανίζεται με τη μεγαλύτερη συχνότητα. Μπορεί να υπάρχουν περισσότερες (bimodal, multimodal) ή καμία.</span>
@@ -366,7 +332,7 @@ window.MathJax = {
       <span class="v b">\(L\) = κάτω όριο επικρατούσας κλάσης</span>
       <span class="v b">\(c\) = πλάτος κλάσης</span>
     </div>
-    <div class="note">Ο τύπος αυτός είναι <strong>προσεγγιστικός</strong> — σε ομαδοποιημένα δεδομένα η επικρατούσα δεν ορίζεται με ακρίβεια, μόνο η επικρατούσα κλάση. Το αποτέλεσμα εξαρτάται από τον τρόπο ομαδοποίησης.</div>
+    <div class="note">Ο τύπος αυτός είναι <strong>προσεγγιστικός</strong> — σε ομαδοποιημένα δεδομένα η επικρατούσα δεν ορίζεται με ακρίβεια. Το αποτέλεσμα εξαρτάται από τον τρόπο ομαδοποίησης.</div>
   </div>
 
 </div>
@@ -379,7 +345,7 @@ window.MathJax = {
 <div class="grid">
 
   <div class="card teal">
-    <div class="lbl">Εύρος — Range</div>
+    <div class="lbl"><span class="lbl-text">Εύρος — Range</span><button class="ex-btn" onclick="openModal('range')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ R = x_{\max} - x_{\min} \]</span>
       <span class="desc">Η διαφορά μεγαλύτερης από μικρότερη τιμή. Απλό, αλλά πολύ ευαίσθητο σε ακραίες τιμές.</span>
@@ -399,32 +365,32 @@ window.MathJax = {
   </div>
 
   <div class="card teal">
-    <div class="lbl">Διακύμανση — Variance</div>
+    <div class="lbl"><span class="lbl-text">Διακύμανση — Variance</span><button class="ex-btn" onclick="openModal('variance')">παράδειγμα ▸</button></div>
     <div class="ftitle">Πληθυσμιακή διακύμανση — διαιρούμε με <span style="text-transform:none">n</span></div>
     <div class="fb">
       <span class="math">\[ s^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^2 \]</span>
-      <span class="desc">Όταν έχουμε <strong>ολόκληρο τον πληθυσμό</strong>. Χρησιμοποιούμε \(\mu\) (πληθυσμιακός μέσος) και διαιρούμε με \(n\).</span>
+      <span class="desc">Όταν έχουμε <strong>ολόκληρο τον πληθυσμό</strong>. Διαιρούμε με \(n\).</span>
     </div>
     <div class="ftitle">Δειγματική διακύμανση — διαιρούμε με <span style="text-transform:none">n−1</span></div>
     <div class="fb">
       <span class="math">\[ s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2 \]</span>
-      <span class="desc">Όταν έχουμε <strong>δείγμα</strong> από μεγαλύτερο πληθυσμό. Ο \(n-1\) (βαθμοί ελευθερίας) δίνει αμερόληπτη εκτίμηση του \(s^2\).</span>
+      <span class="desc">Όταν έχουμε <strong>δείγμα</strong> από μεγαλύτερο πληθυσμό. Ο \(n-1\) (βαθμοί ελευθερίας) δίνει αμερόληπτη εκτίμηση.</span>
     </div>
-    <div class="ftitle">Υπολογιστικός τύπος (και για τις δύο παραλλαγές)</div>
+    <div class="ftitle">Υπολογιστικός τύπος</div>
     <div class="fb">
-      <span class="math">\[ s^2 = \frac{1}{n}\sum_{i=1}^{n} (x_i^2 - \bar{x}^2) \]</span>
+      <span class="math">\[ s^2 = \frac{1}{n}\sum_{i=1}^{n} x_i^2 - \bar{x}^2 \]</span>
       <span class="desc">Αλγεβρικά ισοδύναμος, πιο γρήγορος για χειρόγραφο υπολογισμό.</span>
     </div>
     <div class="ftitle">Παραλλαγή — ομαδοποιημένα δεδομένα</div>
     <div class="fb">
-      <span class="math">\[ s^2 = (\sum_{i=1}^{k} x_i^2 \cdot f_i) - \bar{x}^2 \]</span>
+      <span class="math">\[ s^2 = \sum_{i=1}^{k} x_i^2 \cdot f_i - \bar{x}^2 \]</span>
       <span class="desc">Σταθμικό τετράγωνο με σχετικές συχνότητες \(f_i\) (κεντρικές τιμές κλάσεων).</span>
     </div>
     <div class="warn">Μετασχηματισμός: αν \(y_i = k\cdot x_i + c\), τότε \(s_y^2 = k^2 \cdot s_x^2\). Η πρόσθεση σταθεράς δεν αλλάζει τη διακύμανση — μόνο ο πολλαπλασιασμός την επηρεάζει (στο τετράγωνο).</div>
   </div>
 
   <div class="card teal">
-    <div class="lbl">Τυπική απόκλιση — Standard Deviation</div>
+    <div class="lbl"><span class="lbl-text">Τυπική απόκλιση &amp; Τυπικό σφάλμα</span><button class="ex-btn" onclick="openModal('std')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ s = \sqrt{s^2} \]</span>
       <span class="desc">Τετραγωνική ρίζα της διακύμανσης. Έχει τις ίδιες μονάδες με τα δεδομένα — αυτό τη κάνει ερμηνεύσιμη.</span>
@@ -433,17 +399,17 @@ window.MathJax = {
     <div class="ftitle">Τυπικό σφάλμα μέσης τιμής — Standard Error</div>
     <div class="fb">
       <span class="math">\[ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} \]</span>
-      <span class="desc">Η τυπική απόκλιση της κατανομής των δειγματικών μέσων. Μετρά πόσο ακριβής είναι ο \(\bar{x}\) ως εκτιμητής του πληθυσμιακού μέσου \(\mu\).</span>
+      <span class="desc">Η τυπική απόκλιση της κατανομής των δειγματικών μέσων. Μετρά πόσο ακριβής είναι ο \(\bar{x}\) ως εκτιμητής του \(\mu\).</span>
     </div>
     <div class="vars">
       <span class="v t">\(\sigma\) = τυπ. απόκλιση πληθυσμού</span>
       <span class="v t">\(n\) = μέγεθος δείγματος</span>
     </div>
-    <div class="note">Στην πράξη το \(\sigma\) του πληθυσμού συνήθως δεν είναι γνωστό — το αντικαθιστούμε με το \(s\) του δείγματος: \(\sigma_{\bar{x}} \approx s/\sqrt{n}\).</div>
+    <div class="note">Στην πράξη το \(\sigma\) συνήθως δεν είναι γνωστό — το αντικαθιστούμε με \(s\): \(\sigma_{\bar{x}} \approx s/\sqrt{n}\).</div>
   </div>
 
   <div class="card teal">
-    <div class="lbl">Συντελεστής μεταβλητότητας — CV</div>
+    <div class="lbl"><span class="lbl-text">Συντελεστής μεταβλητότητας — CV</span><button class="ex-btn" onclick="openModal('cv')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ CV = \frac{s}{\bar{x}} \cdot 100\% \]</span>
       <span class="desc">Σχετική διασπορά: εκφράζει την τυπική απόκλιση ως ποσοστό του μέσου. Αδιάστατο — επιτρέπει σύγκριση δεδομένων διαφορετικών μονάδων.</span>
@@ -453,7 +419,7 @@ window.MathJax = {
       <span class="v t">\(10\% \leq CV < 30\%\) = μέτρια ομοιογένεια</span>
       <span class="v t">\(CV \geq 30\%\) = ανομοιογενές</span>
     </div>
-    <div class="note">Όσο μεγαλύτερο το \(CV\), τόσο πιο «σκορπισμένα» τα δεδομένα. Ορίζεται μόνο για \(\bar{x} > 0\) — δεν έχει νόημα για αρνητικές ή μηδενικές μέσες τιμές.</div>
+    <div class="note">Ορίζεται μόνο για \(\bar{x} > 0\) — δεν έχει νόημα για αρνητικές ή μηδενικές μέσες τιμές.</div>
   </div>
 
 </div>
@@ -466,7 +432,7 @@ window.MathJax = {
 <div class="grid">
 
   <div class="card amber">
-    <div class="lbl">Εντοπισμός θέσης τεταρτημορίων</div>
+    <div class="lbl"><span class="lbl-text">Εντοπισμός θέσης τεταρτημορίων</span><button class="ex-btn" onclick="openModal('quartpos')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ \text{θέση } Q_1 = \frac{n}{4} \]</span>
       <span class="desc">Η θέση (όχι η τιμή) του 1ου τεταρτημορίου στη ταξινομημένη σειρά.</span>
@@ -483,7 +449,7 @@ window.MathJax = {
   </div>
 
   <div class="card amber">
-    <div class="lbl">Υπολογισμός τιμής τεταρτημορίου (παρεμβολή)</div>
+    <div class="lbl"><span class="lbl-text">Υπολογισμός τιμής τεταρτημορίου</span><button class="ex-btn" onclick="openModal('quartval')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ Q_i = L + \frac{\dfrac{i \cdot n}{4} - N_{i-1}}{\nu_i} \cdot c \]</span>
       <span class="desc">Γενικός τύπος για \(i = 1, 2, 3\). Ίδια λογική παρεμβολής με τη Διάμεσο — απλώς αλλάζει το \(i\).</span>
@@ -498,14 +464,14 @@ window.MathJax = {
   </div>
 
   <div class="card amber">
-    <div class="lbl">Ενδοτεταρτημοριακό εύρος και τεταρτημοριακή απόκλιση</div>
+    <div class="lbl"><span class="lbl-text">IQR, Τεταρτημοριακή απόκλιση &amp; Bowley</span><button class="ex-btn" onclick="openModal('iqr')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ IQR = Q_3 - Q_1 \]</span>
       <span class="desc">Ενδοτεταρτημοριακό εύρος: εύρος του «μεσαίου 50%» των δεδομένων. Ανθεκτικό στις ακραίες τιμές.</span>
     </div>
     <div class="fb">
       <span class="math">\[ Q = \frac{Q_3 - Q_1}{2} \]</span>
-      <span class="desc">Τεταρτημοριακή (ημι-ενδοτεταρτημοριακή) απόκλιση. Μισό του \(IQR\). Μέτρο διασποράς ανθεκτικό στις ακραίες τιμές.</span>
+      <span class="desc">Τεταρτημοριακή (ημι-ενδοτεταρτημοριακή) απόκλιση. Μισό του \(IQR\).</span>
     </div>
     <div class="sep"></div>
     <div class="ftitle">Συμμετρία κατανομής — Bowley</div>
@@ -520,10 +486,10 @@ window.MathJax = {
   </div>
 
   <div class="card amber">
-    <div class="lbl">Δείκτης Λοξότητας — Pearson Skewness (PI)</div>
+    <div class="lbl"><span class="lbl-text">Δείκτης Λοξότητας — Pearson (PI)</span><button class="ex-btn" onclick="openModal('pi')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ PI = \frac{3 \cdot (\bar{x} - M)}{s} \]</span>
-      <span class="desc">Μετρά πόσο απέχει η μέση τιμή από τη διάμεσο σε σχέση με τη διασπορά. Μετατρέπει την οπτική παρατήρηση της «ουράς» σε συγκεκριμένο αριθμό.</span>
+      <span class="desc">Μετρά πόσο απέχει η μέση τιμή από τη διάμεσο σε σχέση με τη διασπορά.</span>
     </div>
     <div class="vars">
       <span class="v a">\(\bar{x}\) = μέση τιμή</span>
@@ -531,38 +497,31 @@ window.MathJax = {
       <span class="v a">\(s\) = τυπική απόκλιση</span>
     </div>
     <div class="sep"></div>
-    <div class="ftitle">Ερμηνεία αποτελέσματος</div>
+    <div class="ftitle">Ερμηνεία</div>
     <div class="vars">
       <span class="v a">\(PI = 0\) = συμμετρική κατανομή</span>
       <span class="v a">\(PI > 0\) = θετική λοξότητα (δεξιά ουρά)</span>
       <span class="v a">\(PI < 0\) = αρνητική λοξότητα (αριστερή ουρά)</span>
     </div>
-    <div class="warn">\(|PI| > 1\) → σημαντική λοξότητα, τα δεδομένα δεν ακολουθούν κανονική κατανομή. Συνδέεται άμεσα με τον Bowley: και οι δύο μετρούν ασυμμετρία με διαφορετικό τρόπο.</div>
+    <div class="warn">\(|PI| > 1\) → σημαντική λοξότητα. Συνδέεται άμεσα με τον Bowley — και οι δύο μετρούν ασυμμετρία με διαφορετικό τρόπο.</div>
   </div>
 
   <div class="card amber">
-    <div class="lbl">Εκατοστημόρια — Percentiles</div>
+    <div class="lbl"><span class="lbl-text">Εκατοστημόρια — Percentiles</span><button class="ex-btn" onclick="openModal('percentile')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ \text{θέση } P_k = \frac{k \cdot n}{100} \]</span>
-      <span class="desc">Η θέση του \(k\)-οστού εκατοστημορίου στη ταξινομημένη σειρά. Το \(k\)% των παρατηρήσεων είναι κάτω από αυτό.</span>
+      <span class="desc">Η θέση του \(k\)-οστού εκατοστημορίου. Το \(k\)% των παρατηρήσεων είναι κάτω από αυτό.</span>
     </div>
-    <div class="ftitle">Παρεμβολή για ομαδοποιημένα δεδομένα</div>
+    <div class="ftitle">Παρεμβολή για ομαδοποιημένα</div>
     <div class="fb">
       <span class="math">\[ P_k = L + \frac{\dfrac{k \cdot n}{100} - N_{i-1}}{\nu_i} \cdot c \]</span>
-      <span class="desc">Ίδια λογική παρεμβολής με τεταρτημόρια και διάμεσο — αλλάζει μόνο ο παράγοντας \(k/100\) αντί για \(i/4\).</span>
-    </div>
-    <div class="vars">
-      <span class="v a">\(k\) = τάξη εκατοστημορίου (1–99)</span>
-      <span class="v a">\(L\) = κάτω όριο κλάσης \(P_k\)</span>
-      <span class="v a">\(N_{i-1}\) = αθρ. απόλ. συχν. κλάσεων πριν</span>
-      <span class="v a">\(\nu_i\) = απόλ. συχν. κλάσης</span>
-      <span class="v a">\(c\) = πλάτος κλάσης</span>
+      <span class="desc">Ίδια λογική με τεταρτημόρια — αλλάζει ο παράγοντας \(k/100\) αντί για \(i/4\).</span>
     </div>
     <div class="sep"></div>
     <div class="ftitle">Σχέση με τεταρτημόρια</div>
     <div class="fb">
       <span class="math">\[ Q_1 = P_{25} \qquad Q_2 = P_{50} \equiv M \qquad Q_3 = P_{75} \]</span>
-      <span class="desc">Τα τεταρτημόρια είναι ειδικές περιπτώσεις εκατοστημορίων. Η διάμεσος είναι πάντα \(P_{50}\).</span>
+      <span class="desc">Τα τεταρτημόρια είναι ειδικές περιπτώσεις εκατοστημορίων.</span>
     </div>
   </div>
 
@@ -576,35 +535,35 @@ window.MathJax = {
 <div class="grid">
 
   <div class="card red">
-    <div class="lbl">Βασικοί ορισμοί και αξιώματα</div>
+    <div class="lbl"><span class="lbl-text">Βασικοί ορισμοί και αξιώματα</span><button class="ex-btn" onclick="openModal('prob_basic')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ P(A) = \frac{N(A)}{N(\Omega)} \]</span>
       <span class="desc">Κλασικός ορισμός: αριθμός ευνοϊκών ενδεχομένων προς συνολικά ισοπίθανα ενδεχόμενα.</span>
     </div>
     <div class="fb">
       <span class="math">\[ 0 \leq P(A) \leq 1 \quad \text{και} \quad P(\Omega) = 1 \]</span>
-      <span class="desc">Αξιώματα Kolmogorov: πιθανότητα πάντα μεταξύ 0 και 1. Το βέβαιο ενδεχόμενο έχει \(P = 1\).</span>
+      <span class="desc">Αξιώματα Kolmogorov: πιθανότητα πάντα μεταξύ 0 και 1.</span>
     </div>
     <div class="fb">
       <span class="math">\[ P(A^c) = 1 - P(A) \]</span>
-      <span class="desc">Συμπληρωματικό: πιθανότητα «να ΜΗΝ συμβεί το \(A\)». Πολύ συχνά χρησιμοποιείται «ανάποδα» για ευκολία.</span>
+      <span class="desc">Συμπληρωματικό: πιθανότητα «να ΜΗΝ συμβεί το \(A\)».</span>
     </div>
   </div>
 
   <div class="card red">
-    <div class="lbl">Ένωση ενδεχομένων</div>
+    <div class="lbl"><span class="lbl-text">Ένωση ενδεχομένων</span><button class="ex-btn" onclick="openModal('union')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]</span>
-      <span class="desc">Γενικός τύπος για «A ή B». Αφαιρούμε την τομή γιατί αλλιώς την μετράμε δύο φορές.</span>
+      <span class="desc">Γενικός τύπος. Αφαιρούμε την τομή γιατί αλλιώς την μετράμε δύο φορές.</span>
     </div>
     <div class="fb">
       <span class="math">\[ P(A \cup B) = P(A) + P(B) \quad \text{αν } A \cap B = \emptyset \]</span>
-      <span class="desc">Ειδική περίπτωση αμοιβαίως αποκλειόμενων ενδεχομένων: δεν μπορούν να συμβούν ταυτόχρονα.</span>
+      <span class="desc">Ειδική περίπτωση αμοιβαίως αποκλειόμενων ενδεχομένων.</span>
     </div>
   </div>
 
   <div class="card red">
-    <div class="lbl">Τομή — Πολλαπλασιαστικός κανόνας</div>
+    <div class="lbl"><span class="lbl-text">Τομή — Πολλαπλασιαστικός κανόνας</span><button class="ex-btn" onclick="openModal('intersection')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ P(A \cap B) = P(A) \cdot P(B \mid A) \]</span>
       <span class="desc">Γενικός τύπος: πιθανότητα να συμβούν ΚΑΙ τα δύο. Ισχύει πάντα.</span>
@@ -621,7 +580,7 @@ window.MathJax = {
   </div>
 
   <div class="card red">
-    <div class="lbl">Δεσμευμένη πιθανότητα</div>
+    <div class="lbl"><span class="lbl-text">Δεσμευμένη πιθανότητα</span><button class="ex-btn" onclick="openModal('conditional')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ P(A \mid B) = \frac{P(A \cap B)}{P(B)} \]</span>
       <span class="desc">Η πιθανότητα του \(A\) γνωρίζοντας ότι συνέβη το \(B\). Ο δειγματικός χώρος «συρρικνώνεται» στο \(B\).</span>
@@ -634,18 +593,18 @@ window.MathJax = {
   </div>
 
   <div class="card red">
-    <div class="lbl">Ολική πιθανότητα και θεώρημα Bayes</div>
+    <div class="lbl"><span class="lbl-text">Ολική πιθανότητα &amp; Bayes</span><button class="ex-btn" onclick="openModal('bayes')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ P(B) = \sum_{i} P(B \mid A_i)\cdot P(A_i) \]</span>
-      <span class="desc">Ολική πιθανότητα: αν \(A_1, A_2, \ldots, A_n\) διαμερίζουν το \(\Omega\) (αμοιβαίως αποκλειόμενα και εξαντλητικά), τότε \(P(B)\) είναι σταθμικός μέσος.</span>
+      <span class="desc">Ολική πιθανότητα: αν τα \(A_1, \ldots, A_n\) διαμερίζουν το \(\Omega\), τότε \(P(B)\) είναι σταθμικός μέσος.</span>
     </div>
     <div class="fb">
       <span class="math">\[ P(A_i \mid B) = \frac{P(B \mid A_i)\cdot P(A_i)}{\displaystyle\sum_{j=1}^{n} P(B \mid A_j)\cdot P(A_j)} \]</span>
-      <span class="desc">Θεώρημα Bayes: «αντιστρέφουμε» τη δεσμευμένη πιθανότητα. Ο παρονομαστής είναι η ολική πιθανότητα \(P(B)\), όπου \(j\) κυλά σε όλα τα \(A_j\) που διαμερίζουν το \(\Omega\).</span>
+      <span class="desc">Θεώρημα Bayes: «αντιστρέφουμε» τη δεσμευμένη πιθανότητα.</span>
     </div>
     <div class="vars">
       <span class="v r">\(P(A_i)\) = prior (προηγούμενη)</span>
-      <span class="v r">\(P(B|A_i)\) = likelihood (εμπιστοσύνη)</span>
+      <span class="v r">\(P(B|A_i)\) = likelihood</span>
       <span class="v r">\(P(A_i|B)\) = posterior (εκ των υστέρων)</span>
     </div>
     <div class="note">Εφαρμογή: γραμμές παραγωγής (ελαττωματικά), διαγνωστικά τεστ (ιός), καιρικές συνθήκες.</div>
@@ -661,7 +620,7 @@ window.MathJax = {
 <div class="grid">
 
   <div class="card green">
-    <div class="lbl">Τυποποίηση — Z-score</div>
+    <div class="lbl"><span class="lbl-text">Τυποποίηση — Z-score</span><button class="ex-btn" onclick="openModal('zscore')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ Z = \frac{X - \mu}{\sigma} \]</span>
       <span class="desc">Μετατρέπει οποιαδήποτε \(X \sim \mathcal{N}(\mu,\,\sigma^2)\) στην τυπική \(Z \sim \mathcal{N}(0,1)\). Εκφράζει πόσες τυπικές αποκλίσεις απέχει η \(X\) από τον μέσο.</span>
@@ -674,7 +633,7 @@ window.MathJax = {
   </div>
 
   <div class="card green">
-    <div class="lbl">Υπολογισμός πιθανοτήτων — πίνακας \(\Phi(z)\)</div>
+    <div class="lbl"><span class="lbl-text">Υπολογισμός πιθανοτήτων — πίνακας \(\Phi(z)\)</span><button class="ex-btn" onclick="openModal('normprob')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ P(X < a) = \Phi(z_a) \]</span>
       <span class="desc">Αριστερή ουρά: διαβάζουμε απευθείας από τον πίνακα τυπικής κανονικής.</span>
@@ -691,33 +650,33 @@ window.MathJax = {
   </div>
 
   <div class="card green">
-    <div class="lbl">Κατανομή δειγματικής μέσης τιμής</div>
+    <div class="lbl"><span class="lbl-text">Κατανομή δειγματικής μέσης τιμής</span><button class="ex-btn" onclick="openModal('samplemean')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ \bar{X} \sim \mathcal{N}\!\left(\mu,\; \frac{\sigma^2}{n}\right) \]</span>
-      <span class="desc">Αν \(X \sim \mathcal{N}(\mu,\sigma^2)\), τότε ο δειγματικός μέσος \(\bar{X}\) δείγματος μεγέθους \(n\) ακολουθεί ακριβώς αυτή την κατανομή.</span>
+      <span class="desc">Αν \(X \sim \mathcal{N}(\mu,\sigma^2)\), τότε ο δειγματικός μέσος \(\bar{X}\) δείγματος μεγέθους \(n\) ακολουθεί αυτή την κατανομή.</span>
     </div>
     <div class="fb">
       <span class="math">\[ Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \]</span>
-      <span class="desc">Τυποποίηση δειγματικού μέσου. Ο παρονομαστής \(\sigma/\sqrt{n}\) είναι το Τυπικό Σφάλμα (Standard Error).</span>
+      <span class="desc">Τυποποίηση δειγματικού μέσου. Ο παρονομαστής \(\sigma/\sqrt{n}\) είναι το Τυπικό Σφάλμα.</span>
     </div>
     <div class="info">Κεντρικό Οριακό Θεώρημα: ακόμα και αν ο πληθυσμός δεν είναι κανονικός, για \(n \geq 30\) ο \(\bar{X}\) είναι κατά προσέγγιση κανονικός.</div>
   </div>
 
   <div class="card green">
-    <div class="lbl">Εμπειρικός κανόνας — 68·95·99.7</div>
+    <div class="lbl"><span class="lbl-text">Εμπειρικός κανόνας — 68·95·99.7</span></div>
     <div class="fb">
       <span class="math">\[ P(\mu - \sigma < X < \mu + \sigma) \approx 68\% \]</span>
       <span class="desc">Περίπου το 68% των τιμών βρίσκεται εντός 1 τυπικής απόκλισης από τον μέσο.</span>
     </div>
     <div class="fb">
       <span class="math">\[ P(\mu - 2\sigma < X < \mu + 2\sigma) \approx 95\% \]</span>
-      <span class="desc">Περίπου το 95% των τιμών βρίσκεται εντός 2 τυπικών αποκλίσεων.</span>
+      <span class="desc">Περίπου το 95% εντός 2 τυπικών αποκλίσεων.</span>
     </div>
     <div class="fb">
       <span class="math">\[ P(\mu - 3\sigma < X < \mu + 3\sigma) \approx 99.7\% \]</span>
-      <span class="desc">Σχεδόν όλες οι τιμές (99.7%) βρίσκονται εντός 3 τυπικών αποκλίσεων.</span>
+      <span class="desc">Σχεδόν όλες οι τιμές (99.7%) εντός 3 τυπικών αποκλίσεων.</span>
     </div>
-    <div class="warn">Ισχύει μόνο για κανονική κατανομή. Πολύ χρήσιμο για γρήγορο έλεγχο: τιμές έξω από \(\mu \pm 3\sigma\) θεωρούνται ακραίες (outliers).</div>
+    <div class="warn">Ισχύει μόνο για κανονική κατανομή. Τιμές έξω από \(\mu \pm 3\sigma\) θεωρούνται ακραίες (outliers).</div>
   </div>
 
 </div>
@@ -730,16 +689,16 @@ window.MathJax = {
 <div class="grid">
 
   <div class="card purple">
-    <div class="lbl">Εξίσωση ευθείας παλινδρόμησης</div>
+    <div class="lbl"><span class="lbl-text">Εξίσωση ευθείας παλινδρόμησης</span><button class="ex-btn" onclick="openModal('regline')">παράδειγμα ▸</button></div>
     <div class="ftitle">Πραγματικό στατιστικό μοντέλο</div>
     <div class="fb">
       <span class="math">\[ y = \beta_0 + \beta_1 \cdot x + \varepsilon \]</span>
-      <span class="desc">Το θεωρητικό μοντέλο. Το \(\varepsilon\) είναι το τυχαίο σφάλμα — αντιπροσωπεύει ό,τι δεν εξηγεί η ευθεία (μέτρηση, τυχαιότητα, παραλειπόμενες μεταβλητές). Υποθέτουμε \(\varepsilon \sim \mathcal{N}(0, \sigma^2)\).</span>
+      <span class="desc">Το θεωρητικό μοντέλο. Το \(\varepsilon\) είναι το τυχαίο σφάλμα. Υποθέτουμε \(\varepsilon \sim \mathcal{N}(0, \sigma^2)\).</span>
     </div>
     <div class="ftitle">Εξίσωση πρόβλεψης (fitted line)</div>
     <div class="fb">
       <span class="math">\[ \hat{y} = \beta_0 + \beta_1 \cdot x \]</span>
-      <span class="desc">Η εκτιμημένη ευθεία — χωρίς σφάλμα. Δίνει την <em>προβλεπόμενη</em> τιμή για δεδομένο \(x\). Ελαχιστοποιεί το άθροισμα τετραγώνων υπολοίπων (Least Squares).</span>
+      <span class="desc">Η εκτιμημένη ευθεία. Ελαχιστοποιεί το άθροισμα τετραγώνων υπολοίπων (Least Squares).</span>
     </div>
     <div class="vars">
       <span class="v p">\(\hat{y}\) = προβλεπόμενη τιμή</span>
@@ -751,36 +710,36 @@ window.MathJax = {
   </div>
 
   <div class="card purple">
-    <div class="lbl">Βοηθητικά αθροίσματα</div>
+    <div class="lbl"><span class="lbl-text">Βοηθητικά αθροίσματα Sxx, Syy, Sxy</span></div>
     <div class="fb">
-      <span class="math">\[ S_{xx} = \sum_{i=1}^n x_i^2 - \frac{\left(\sum_{i=1}^n x_i\right)^2}{n} \]</span>
-      <span class="desc">Άθροισμα τετραγώνων \(x\): μετρά τη μεταβλητότητα των \(x_i\) γύρω από τον \(\bar{x}\).</span>
+      <span class="math">\[ S_{xx} = \sum x_i^2 - \frac{(\sum x_i)^2}{n} \]</span>
+      <span class="desc">Μεταβλητότητα των \(x_i\) γύρω από τον \(\bar{x}\).</span>
     </div>
     <div class="fb">
-      <span class="math">\[ S_{yy} = \sum_{i=1}^n y_i^2 - \frac{\left(\sum_{i=1}^n y_i\right)^2}{n} \]</span>
-      <span class="desc">Άθροισμα τετραγώνων \(y\): χρειάζεται μόνο για τον \(r\), όχι για την ευθεία.</span>
+      <span class="math">\[ S_{yy} = \sum y_i^2 - \frac{(\sum y_i)^2}{n} \]</span>
+      <span class="desc">Μεταβλητότητα \(y_i\). Χρειάζεται μόνο για τον \(r\), όχι για την ευθεία.</span>
     </div>
     <div class="fb">
-      <span class="math">\[ S_{xy} = \sum_{i=1}^n x_i y_i - \frac{\left(\sum_{i=1}^n x_i\right)\!\left(\sum_{i=1}^n y_i\right)}{n} \]</span>
-      <span class="desc">Άθροισμα συνδιακύμανσης: μετρά πώς μεταβάλλονται μαζί \(x\) και \(y\).</span>
+      <span class="math">\[ S_{xy} = \sum x_i y_i - \frac{(\sum x_i)(\sum y_i)}{n} \]</span>
+      <span class="desc">Συνδιακύμανση: μετρά πώς μεταβάλλονται μαζί \(x\) και \(y\).</span>
     </div>
   </div>
 
   <div class="card purple">
-    <div class="lbl">Υπολογισμός \(\beta_1\) και \(\beta_0\)</div>
+    <div class="lbl"><span class="lbl-text">Υπολογισμός συντελεστών \(\beta_1\) και \(\beta_0\)</span></div>
     <div class="fb">
       <span class="math">\[ \beta_1 = \frac{S_{xy}}{S_{xx}} \]</span>
-      <span class="desc">Κλίση: πόσο μεταβάλλεται το \(\hat{y}\) για κάθε μονάδα αύξησης \(x\). Θετικό → ανοδική σχέση.</span>
+      <span class="desc">Κλίση: πόσο μεταβάλλεται το \(\hat{y}\) για κάθε μονάδα αύξησης \(x\).</span>
     </div>
     <div class="fb">
       <span class="math">\[ \beta_0 = \bar{y} - \beta_1 \cdot \bar{x} \]</span>
-      <span class="desc">Σταθερά: υπολογίζεται ΜΕΤΑ τον \(\beta_1\). Είναι η τιμή \(\hat{y}\) όταν \(x = 0\).</span>
+      <span class="desc">Σταθερά: υπολογίζεται ΜΕΤΑ τον \(\beta_1\).</span>
     </div>
     <div class="note">Σειρά: πρώτα \(\bar{x}, \bar{y}\) → μετά \(S_{xx}, S_{xy}\) → μετά \(\beta_1\) → τελευταίο \(\beta_0\).</div>
   </div>
 
   <div class="card purple">
-    <div class="lbl">Συντελεστής συσχέτισης Pearson</div>
+    <div class="lbl"><span class="lbl-text">Συντελεστής συσχέτισης Pearson</span><button class="ex-btn" onclick="openModal('pearsonr')">παράδειγμα ▸</button></div>
     <div class="fb">
       <span class="math">\[ r = \frac{S_{xy}}{\sqrt{S_{xx} \cdot S_{yy}}} \]</span>
       <span class="desc">Μετρά ισχύ και κατεύθυνση γραμμικής σχέσης. Αδιάστατο, πάντα \(-1 \leq r \leq +1\).</span>
@@ -800,7 +759,7 @@ window.MathJax = {
   </div>
 
   <div class="card purple">
-    <div class="lbl">Συντελεστής προσδιορισμού</div>
+    <div class="lbl"><span class="lbl-text">Συντελεστής προσδιορισμού R²</span></div>
     <div class="fb">
       <span class="math">\[ R^2 = r^2 \]</span>
       <span class="desc">Το ποσοστό της συνολικής μεταβλητότητας του \(y\) που ερμηνεύεται γραμμικά από το \(x\).</span>
@@ -816,58 +775,39 @@ window.MathJax = {
 
 <div class="grid wide" style="margin-top:14px">
   <div class="card purple">
-    <div class="lbl">Μεθοδολογία — βήματα επίλυσης παλινδρόμησης</div>
+    <div class="lbl"><span class="lbl-text">Μεθοδολογία — βήματα επίλυσης παλινδρόμησης</span><button class="ex-btn" onclick="openModal('regsteps')">παράδειγμα ▸</button></div>
 
     <div class="ftitle ftitle-accent">① Κατασκεύασε τον πίνακα εργασίας</div>
     <div class="fb">
       <span class="math">\[ x_i,\quad y_i,\quad x_i^2,\quad y_i^2,\quad x_i y_i \]</span>
       <span class="desc">Φτιάξε πίνακα με αυτές τις πέντε στήλες και υπολόγισε τα αθροίσματά τους.</span>
     </div>
-
     <div class="ftitle ftitle-accent">② Υπολόγισε τους μέσους</div>
     <div class="fb">
       <span class="math">\[ \bar{x} = \frac{\sum x_i}{n} \qquad \bar{y} = \frac{\sum y_i}{n} \]</span>
-      <span class="desc">Άθροισμα κάθε στήλης διαιρεμένο με το πλήθος παρατηρήσεων \(n\).</span>
     </div>
-
     <div class="ftitle ftitle-accent">③ Υπολόγισε τα βοηθητικά αθροίσματα</div>
     <div class="fb">
-      <span class="math">\[ S_{xx} = \sum x_i^2 - \frac{(\sum x_i)^2}{n} \]</span>
-      <span class="desc">Μεταβλητότητα του \(x\).</span>
+      <span class="math">\[ S_{xx} = \sum x_i^2 - \frac{(\sum x_i)^2}{n} \qquad S_{yy} = \sum y_i^2 - \frac{(\sum y_i)^2}{n} \qquad S_{xy} = \sum x_i y_i - \frac{(\sum x_i)(\sum y_i)}{n} \]</span>
     </div>
-    <div class="fb">
-      <span class="math">\[ S_{yy} = \sum y_i^2 - \frac{(\sum y_i)^2}{n} \]</span>
-      <span class="desc">Μεταβλητότητα του \(y\) — χρειάζεται μόνο για τον \(r\).</span>
-    </div>
-    <div class="fb">
-      <span class="math">\[ S_{xy} = \sum x_i y_i - \frac{(\sum x_i)(\sum y_i)}{n} \]</span>
-      <span class="desc">Συνδιακύμανση \(x\) και \(y\).</span>
-    </div>
-
     <div class="ftitle ftitle-accent">④ Υπολόγισε τους συντελεστές</div>
     <div class="fb">
       <span class="math">\[ \beta_1 = \frac{S_{xy}}{S_{xx}} \qquad \beta_0 = \bar{y} - \beta_1 \cdot \bar{x} \]</span>
-      <span class="desc">Πρώτα κλίση \(\beta_1\), μετά σταθερά \(\beta_0\). Η σειρά έχει σημασία.</span>
     </div>
-
     <div class="ftitle ftitle-accent">⑤ Γράψε την εξίσωση</div>
     <div class="fb">
       <span class="math">\[ \hat{y} = \beta_0 + \beta_1 \cdot x \]</span>
       <span class="desc">Έλεγχος: η ευθεία πρέπει να διέρχεται από το \((\bar{x},\, \bar{y})\).</span>
     </div>
-
     <div class="ftitle ftitle-accent">⑥ Υπολόγισε συσχέτιση και προσδιορισμό</div>
     <div class="fb">
       <span class="math">\[ r = \frac{S_{xy}}{\sqrt{S_{xx} \cdot S_{yy}}} \qquad R^2 = r^2 \]</span>
-      <span class="desc">Σχολίασε ισχύ (\(|r|{<}0.3\) αδύναμη · \(0.3{-}0.7\) μέτρια · \({>}0.7\) ισχυρή) και κατεύθυνση (πρόσημο).</span>
     </div>
-
     <div class="ftitle ftitle-accent">⑦ Πρόβλεψη για νέο \(x_0\)</div>
     <div class="fb">
       <span class="math">\[ \hat{y}_0 = \beta_0 + \beta_1 \cdot x_0 \]</span>
       <span class="desc">Αντικατέστησε \(x_0\) στην εξίσωση. Έγκυρο μόνο εντός του εύρους των δεδομένων.</span>
     </div>
-
   </div>
 </div>
 
@@ -879,7 +819,7 @@ window.MathJax = {
 <div class="grid">
 
   <div class="card coral">
-    <div class="lbl">Ραβδόγραμμα — Bar Chart</div>
+    <div class="lbl"><span class="lbl-text">Ραβδόγραμμα — Bar Chart</span></div>
     <div class="fb" style="text-align:center;padding:16px">
       <svg width="200" height="110" viewBox="0 0 200 110" style="display:inline-block">
         <line x1="20" y1="100" x2="195" y2="100" stroke="#f97316" stroke-width="1.5"/>
@@ -902,15 +842,11 @@ window.MathJax = {
     <div class="ftitle ftitle-accent">&#9313; Συχνότητες στον κατακόρυφο άξονα</div>
     <div class="ftitle ftitle-accent">&#9314; Ορθογώνιο ίσου πλάτους για κάθε κατηγορία</div>
     <div class="ftitle ftitle-accent">&#9315; Κενά μεταξύ ράβδων (διαφορά από ιστόγραμμα)</div>
-    <div class="vars">
-      <span class="v c">ποιοτικά δεδομένα</span>
-      <span class="v c">1 σύνολο δεδομένων</span>
-      <span class="v c">κενά μεταξύ ράβδων</span>
-    </div>
+    <div class="vars"><span class="v c">ποιοτικά δεδομένα</span><span class="v c">1 σύνολο δεδομένων</span><span class="v c">κενά μεταξύ ράβδων</span></div>
   </div>
 
   <div class="card coral">
-    <div class="lbl">Κυκλικό Διάγραμμα — Pie Chart</div>
+    <div class="lbl"><span class="lbl-text">Κυκλικό Διάγραμμα — Pie Chart</span></div>
     <div class="fb" style="text-align:center;padding:16px">
       <svg width="120" height="120" viewBox="0 0 120 120" style="display:inline-block">
         <path d="M60,60 L60,10 A50,50 0 0,1 103,85 Z" fill="rgba(249,115,22,0.7)"/>
@@ -933,15 +869,11 @@ window.MathJax = {
     <div class="ftitle ftitle-accent">&#9313; Μετέτρεψε σε γωνίες: \(\varphi_i = f_i \cdot 360°\)</div>
     <div class="ftitle ftitle-accent">&#9314; Χάραξε τομείς διαδοχικά</div>
     <div class="ftitle ftitle-accent">&#9315; Σημείωσε ποσοστά % σε κάθε τομέα</div>
-    <div class="vars">
-      <span class="v c">ποιοτικά δεδομένα</span>
-      <span class="v c">&#8804;7 κατηγορίες</span>
-      <span class="v c">αποδίδει ποσοστά</span>
-    </div>
+    <div class="vars"><span class="v c">ποιοτικά δεδομένα</span><span class="v c">&#8804;7 κατηγορίες</span><span class="v c">αποδίδει ποσοστά</span></div>
   </div>
 
   <div class="card coral">
-    <div class="lbl">Ιστόγραμμα — Histogram</div>
+    <div class="lbl"><span class="lbl-text">Ιστόγραμμα — Histogram</span></div>
     <div class="fb" style="text-align:center;padding:16px">
       <svg width="200" height="110" viewBox="0 0 200 110" style="display:inline-block">
         <line x1="20" y1="100" x2="195" y2="100" stroke="#f97316" stroke-width="1.5"/>
@@ -958,19 +890,15 @@ window.MathJax = {
     <div class="ftitle">Βήματα κατασκευής</div>
     <div class="ftitle ftitle-accent">① Κατασκεύασε πίνακα συχνοτήτων με κλάσεις</div>
     <div class="ftitle ftitle-accent">② Άκρα κλάσεων στον οριζόντιο άξονα</div>
-    <div class="ftitle ftitle-accent">③ Ύψος ράβδου = συχνότητα κλάσης <strong>(μόνο για ίσα πλάτη κλάσεων)</strong></div>
+    <div class="ftitle ftitle-accent">③ Ύψος ράβδου = συχνότητα κλάσης <strong>(μόνο για ίσα πλάτη)</strong></div>
     <div class="ftitle ftitle-accent">④ Ράβδοι εφάπτονται — χωρίς κενά</div>
     <div class="ftitle ftitle-accent">⑤ Συνολικό εμβαδόν = n (ή 1 για σχετικές)</div>
-    <div class="warn">Για <strong>άνισα πλάτη κλάσεων</strong>: το ύψος δεν είναι η συχνότητα αλλά η πυκνότητα \(h_i = f_i / c_i\). Έτσι διασφαλίζεται ότι το εμβαδόν (όχι το ύψος) αναπαριστά τη συχνότητα. Στο μάθημα αυτό οι κλάσεις είναι πάντα ισόπλατες.</div>
-    <div class="vars">
-      <span class="v c">ποσοτικά δεδομένα</span>
-      <span class="v c">ομαδοποιημένα σε κλάσεις</span>
-      <span class="v c">χωρίς κενά μεταξύ ράβδων</span>
-    </div>
+    <div class="warn">Για <strong>άνισα πλάτη κλάσεων</strong>: ύψος = πυκνότητα \(h_i = f_i / c_i\) (όχι η συχνότητα). Στο μάθημα αυτό οι κλάσεις είναι πάντα ισόπλατες.</div>
+    <div class="vars"><span class="v c">ποσοτικά δεδομένα</span><span class="v c">ομαδοποιημένα σε κλάσεις</span><span class="v c">χωρίς κενά μεταξύ ράβδων</span></div>
   </div>
 
   <div class="card coral">
-    <div class="lbl">Πολύγωνο Συχνοτήτων — Frequency Polygon</div>
+    <div class="lbl"><span class="lbl-text">Πολύγωνο Συχνοτήτων</span></div>
     <div class="fb" style="text-align:center;padding:16px">
       <svg width="200" height="110" viewBox="0 0 200 110" style="display:inline-block">
         <line x1="20" y1="100" x2="195" y2="100" stroke="#f97316" stroke-width="1.5"/>
@@ -993,27 +921,21 @@ window.MathJax = {
     <div class="ftitle ftitle-accent">&#9312; Κατασκεύασε το ιστόγραμμα</div>
     <div class="ftitle ftitle-accent">&#9313; Σημείωσε μέσο πάνω πλευράς κάθε ράβδου</div>
     <div class="ftitle ftitle-accent">&#9314; Ένωσε τα σημεία με ευθύγραμμα τμήματα</div>
-    <div class="ftitle ftitle-accent">&#9315; Κλείσε στον οριζόντιο άξονα (μηδενικές κλάσεις)</div>
+    <div class="ftitle ftitle-accent">&#9315; Κλείσε στον οριζόντιο άξονα</div>
     <div class="note">Για αθροιστικές: συνδέουμε τις <strong>πάνω δεξιά κορυφές</strong> (όχι τα μέσα).</div>
   </div>
 
   <div class="card coral">
-    <div class="lbl">Θηκόγραμμα — Box Plot</div>
+    <div class="lbl"><span class="lbl-text">Θηκόγραμμα — Box Plot</span></div>
     <div class="fb" style="text-align:center;padding:20px">
       <svg width="200" height="130" viewBox="0 0 200 130" style="display:inline-block">
-        <!-- upper whisker (short = less spread above Q3) -->
         <line x1="100" y1="15" x2="100" y2="35" stroke="#f97316" stroke-width="1.5"/>
         <line x1="82" y1="15" x2="118" y2="15" stroke="#f97316" stroke-width="1.5"/>
-        <!-- lower whisker (long = more spread below Q1) -->
         <line x1="100" y1="85" x2="100" y2="112" stroke="#f97316" stroke-width="1.5"/>
         <line x1="82" y1="112" x2="118" y2="112" stroke="#f97316" stroke-width="1.5"/>
-        <!-- box Q1 to Q3 -->
         <rect x="55" y="35" width="90" height="50" fill="rgba(249,115,22,0.2)" stroke="#f97316" stroke-width="1.5"/>
-        <!-- M closer to Q3 (top of box) → negative skew -->
         <line x1="55" y1="48" x2="145" y2="48" stroke="#f97316" stroke-width="2.5"/>
-        <!-- outlier point -->
         <circle cx="100" cy="125" r="3.5" fill="none" stroke="#f97316" stroke-width="1.5"/>
-        <!-- labels -->
         <text x="150" y="19" font-size="8" fill="#9aa0b8">max (οριακή)</text>
         <text x="150" y="39" font-size="8" fill="#9aa0b8">Q₃</text>
         <text x="150" y="51" font-size="8" fill="#f97316" font-weight="bold">M ← κοντά στο Q₃</text>
@@ -1028,43 +950,46 @@ window.MathJax = {
     </div>
     <div class="ftitle">Ανάγνωση συμμετρίας</div>
     <div class="vars">
-      <span class="v c">M στο μέσο &#8594; συμμετρία</span>
-      <span class="v c">M κοντά Q&#8321; &#8594; θετική ασυμμετρία</span>
-      <span class="v c">M κοντά Q&#8323; &#8594; αρνητική ασυμμετρία</span>
+      <span class="v c">M στο μέσο → συμμετρία</span>
+      <span class="v c">M κοντά Q₁ → θετική ασυμμετρία</span>
+      <span class="v c">M κοντά Q₃ → αρνητική ασυμμετρία</span>
     </div>
     <div class="ftitle">Βήματα κατασκευής</div>
-    <div class="ftitle ftitle-accent">&#9312; Υπολόγισε Q&#8321;, M (Q&#8322;), Q&#8323;</div>
-    <div class="ftitle ftitle-accent">&#9313; Σχεδίασε ορθογώνιο από Q&#8321; έως Q&#8323;</div>
+    <div class="ftitle ftitle-accent">&#9312; Υπολόγισε Q₁, M (Q₂), Q₃</div>
+    <div class="ftitle ftitle-accent">&#9313; Σχεδίασε ορθογώνιο από Q₁ έως Q₃</div>
     <div class="ftitle ftitle-accent">&#9314; Χάραξε οριζόντια γραμμή στη θέση M</div>
-    <div class="ftitle ftitle-accent">&#9315; Κεραίες (whiskers) έως min/max ή οριακές τιμές</div>
+    <div class="ftitle ftitle-accent">&#9315; Κεραίες έως min/max ή οριακές τιμές</div>
     <div class="ftitle ftitle-accent">&#9316; Ακραίες τιμές ως μεμονωμένα σημεία</div>
   </div>
 
   <div class="card coral">
-    <div class="lbl">Διάγραμμα Διασποράς — Scatter Plot</div>
+    <div class="lbl"><span class="lbl-text">Διάγραμμα Διασποράς — Scatter Plot</span></div>
     <div class="fb" style="text-align:center;padding:16px">
       <svg width="200" height="110" viewBox="0 0 200 110" style="display:inline-block">
         <line x1="20" y1="100" x2="195" y2="100" stroke="#f97316" stroke-width="1.5"/>
         <line x1="20" y1="10" x2="20" y2="100" stroke="#f97316" stroke-width="1.5"/>
         <line x1="25" y1="90" x2="190" y2="18" stroke="rgba(249,115,22,0.35)" stroke-width="1.5" stroke-dasharray="4,3"/>
-        <circle cx="35" cy="84" r="3.5" fill="#f97316"/>
-        <circle cx="55" cy="72" r="3.5" fill="#f97316"/>
-        <circle cx="75" cy="79" r="3.5" fill="#f97316"/>
-        <circle cx="92" cy="55" r="3.5" fill="#f97316"/>
-        <circle cx="112" cy="48" r="3.5" fill="#f97316"/>
-        <circle cx="132" cy="20" r="3.5" fill="#f97316"/>
-        <circle cx="152" cy="30" r="3.5" fill="#f97316"/>
-        <circle cx="172" cy="36" r="3.5" fill="#f97316"/>
+        <circle cx="35" cy="78" r="3.5" fill="#f97316"/>
+        <circle cx="48" cy="88" r="3.5" fill="#f97316"/>
+        <circle cx="62" cy="65" r="3.5" fill="#f97316"/>
+        <circle cx="78" cy="72" r="3.5" fill="#f97316"/>
+        <circle cx="90" cy="50" r="3.5" fill="#f97316"/>
+        <circle cx="105" cy="58" r="3.5" fill="#f97316"/>
+        <circle cx="118" cy="40" r="3.5" fill="#f97316"/>
+        <circle cx="132" cy="52" r="3.5" fill="#f97316"/>
+        <circle cx="148" cy="28" r="3.5" fill="#f97316"/>
+        <circle cx="162" cy="38" r="3.5" fill="#f97316"/>
+        <circle cx="175" cy="22" r="3.5" fill="#f97316"/>
+        <circle cx="185" cy="32" r="3.5" fill="#f97316"/>
         <text x="158" y="108" font-size="9" fill="#9aa0b8">x</text>
         <text x="8" y="18" font-size="9" fill="#9aa0b8">y</text>
       </svg>
     </div>
-    <div class="fb"><span class="desc">Απεικονίζει σχέση <strong>δύο ποσοτικών μεταβλητών</strong>. Κάθε σημείο = ζεύγος \((x_i, y_i)\). Αποκαλύπτει γραμμικότητα, κατεύθυνση, ισχύ.</span></div>
-    <div class="ftitle">Ανάγνωση</div>
+    <div class="fb"><span class="desc">Απεικονίζει σχέση <strong>δύο ποσοτικών μεταβλητών</strong>. Κάθε σημείο = ζεύγος \((x_i, y_i)\).</span></div>
     <div class="vars">
-      <span class="v c">σημεία ανεβαίνουν &#8594; θετική συσχέτιση</span>
-      <span class="v c">σημεία κατεβαίνουν &#8594; αρνητική συσχέτιση</span>
-      <span class="v c">χωρίς μοτίβο &#8594; καμία γραμμική</span>
+      <span class="v c">σημεία ανεβαίνουν → θετική συσχέτιση</span>
+      <span class="v c">σημεία κατεβαίνουν → αρνητική συσχέτιση</span>
+      <span class="v c">χωρίς μοτίβο → καμία γραμμική</span>
     </div>
     <div class="ftitle">Βήματα κατασκευής</div>
     <div class="ftitle ftitle-accent">&#9312; Καθόρισε ανεξάρτητη (x) και εξαρτημένη (y)</div>
@@ -1074,75 +999,134 @@ window.MathJax = {
   </div>
 
   <div class="card coral">
-    <div class="lbl">Χρονολογικές Σειρές — Line Chart</div>
+    <div class="lbl"><span class="lbl-text">Χρονολογικές Σειρές — Line Chart</span></div>
     <div class="fb" style="text-align:center;padding:16px">
       <svg width="200" height="110" viewBox="0 0 200 110" style="display:inline-block">
         <line x1="20" y1="100" x2="195" y2="100" stroke="#f97316" stroke-width="1.5"/>
         <line x1="20" y1="10" x2="20" y2="100" stroke="#f97316" stroke-width="1.5"/>
         <polyline points="30,82 60,68 90,72 120,48 150,52 175,30 195,22" fill="none" stroke="#f97316" stroke-width="2"/>
-        <circle cx="30" cy="82" r="3" fill="#f97316"/>
-        <circle cx="60" cy="68" r="3" fill="#f97316"/>
-        <circle cx="90" cy="72" r="3" fill="#f97316"/>
-        <circle cx="120" cy="48" r="3" fill="#f97316"/>
-        <circle cx="150" cy="52" r="3" fill="#f97316"/>
-        <circle cx="175" cy="30" r="3" fill="#f97316"/>
+        <circle cx="30" cy="82" r="3" fill="#f97316"/><circle cx="60" cy="68" r="3" fill="#f97316"/>
+        <circle cx="90" cy="72" r="3" fill="#f97316"/><circle cx="120" cy="48" r="3" fill="#f97316"/>
+        <circle cx="150" cy="52" r="3" fill="#f97316"/><circle cx="175" cy="30" r="3" fill="#f97316"/>
         <circle cx="195" cy="22" r="3" fill="#f97316"/>
-        <text x="27" y="109" font-size="7" fill="#9aa0b8">t&#8321;</text>
-        <text x="57" y="109" font-size="7" fill="#9aa0b8">t&#8322;</text>
-        <text x="87" y="109" font-size="7" fill="#9aa0b8">t&#8323;</text>
-        <text x="117" y="109" font-size="7" fill="#9aa0b8">t&#8324;</text>
-        <text x="147" y="109" font-size="7" fill="#9aa0b8">t&#8325;</text>
-        <text x="172" y="109" font-size="7" fill="#9aa0b8">t&#8326;</text>
+        <text x="27" y="109" font-size="7" fill="#9aa0b8">t₁</text><text x="57" y="109" font-size="7" fill="#9aa0b8">t₂</text>
+        <text x="87" y="109" font-size="7" fill="#9aa0b8">t₃</text><text x="117" y="109" font-size="7" fill="#9aa0b8">t₄</text>
+        <text x="147" y="109" font-size="7" fill="#9aa0b8">t₅</text><text x="172" y="109" font-size="7" fill="#9aa0b8">t₆</text>
       </svg>
     </div>
-    <div class="fb"><span class="desc">Παριστάνει <strong>εξέλιξη μεταβλητής στο χρόνο</strong>. Οριζόντιος άξονας = χρόνος. Αποκαλύπτει τάσεις, εποχικότητα, κύκλους.</span></div>
+    <div class="fb"><span class="desc">Παριστάνει <strong>εξέλιξη μεταβλητής στο χρόνο</strong>. Αποκαλύπτει τάσεις, εποχικότητα, κύκλους.</span></div>
     <div class="ftitle">Βήματα κατασκευής</div>
     <div class="ftitle ftitle-accent">&#9312; Χρόνος στον οριζόντιο άξονα</div>
     <div class="ftitle ftitle-accent">&#9313; Τιμές μεταβλητής στον κατακόρυφο</div>
     <div class="ftitle ftitle-accent">&#9314; Σημείο για κάθε χρονική στιγμή</div>
     <div class="ftitle ftitle-accent">&#9315; Ένωσε τα σημεία με ευθύγραμμα τμήματα</div>
-    <div class="vars">
-      <span class="v c">χρονικά δεδομένα</span>
-      <span class="v c">ανακαλύπτει τάσεις</span>
-      <span class="v c">εποχικότητα &amp; κύκλοι</span>
-    </div>
+    <div class="vars"><span class="v c">χρονικά δεδομένα</span><span class="v c">ανακαλύπτει τάσεις</span><span class="v c">εποχικότητα &amp; κύκλοι</span></div>
   </div>
 
 </div>
 
 <div class="grid wide" style="margin-top:14px">
   <div class="card coral">
-    <div class="lbl">Σύγκριση — Πότε χρησιμοποιείται κάθε διάγραμμα</div>
-    <div class="vars" style="grid-template-columns: 1fr">
-      <span class="v c">Ποιοτικά, 1 μεταβλητή &#8594; Ραβδόγραμμα ή Κυκλικό</span>
-      <span class="v c">Ποσοτικά ομαδοποιημένα &#8594; Ιστόγραμμα</span>
-      <span class="v c">Κατανομή + ακραίες τιμές &#8594; Θηκόγραμμα</span>
-      <span class="v c">Σχέση 2 ποσοτικών &#8594; Διάγραμμα Διασποράς</span>
-      <span class="v c">Εξέλιξη στον χρόνο &#8594; Line Chart</span>
-      <span class="v c">Σύγκριση κατανομών &#8594; Πολύγωνο Συχνοτήτων</span>
+    <div class="lbl"><span class="lbl-text">Σύγκριση — Πότε χρησιμοποιείται κάθε διάγραμμα</span></div>
+    <div class="vars" style="grid-template-columns:1fr">
+      <span class="v c">Ποιοτικά, 1 μεταβλητή → Ραβδόγραμμα ή Κυκλικό</span>
+      <span class="v c">Ποσοτικά ομαδοποιημένα → Ιστόγραμμα</span>
+      <span class="v c">Κατανομή + ακραίες τιμές → Θηκόγραμμα</span>
+      <span class="v c">Σχέση 2 ποσοτικών → Διάγραμμα Διασποράς</span>
+      <span class="v c">Εξέλιξη στον χρόνο → Line Chart</span>
+      <span class="v c">Σύγκριση κατανομών → Πολύγωνο Συχνοτήτων</span>
     </div>
-    <div class="warn">Κυκλικό: αποφύγετε όταν οι κατηγορίες είναι περισσότερες από 7 — γίνεται δυσανάγνωστο. Προτιμήστε ραβδόγραμμα για ποσοτικές συγκρίσεις.</div>
+    <div class="warn">Κυκλικό: αποφύγετε όταν οι κατηγορίες είναι περισσότερες από 7 — γίνεται δυσανάγνωστο.</div>
   </div>
 </div>
 
 <div class="footer">Πιθανότητες &amp; Στατιστική · Τυπολόγιο εξετάσεων</div>
 
 </div>
-<a class="btt" id="btt" href="#" title="Πίσω στην αρχή" aria-label="Πίσω στην αρχή">&#8593;</a>
+
+<a class="btt" id="btt" href="#" title="Πίσω στην αρχή">&#8593;</a>
 
 <script>
+// ─── BACK TO TOP ───
 var btn = document.getElementById('btt');
 window.addEventListener('scroll', function() {
-  if (window.scrollY > 300) {
-    btn.classList.add('visible');
-  } else {
-    btn.classList.remove('visible');
-  }
+  btn.classList.toggle('visible', window.scrollY > 300);
 });
 btn.addEventListener('click', function(e) {
   e.preventDefault();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// ─── MODAL ───
+var overlay = document.getElementById('modalOverlay');
+
+function openModal(id) {
+  var data = EXAMPLES[id];
+  if (!data) return;
+  document.getElementById('modalCat').textContent = data.cat || 'Παράδειγμα';
+  document.getElementById('modalTitle').textContent = data.title;
+  document.getElementById('modalBody').innerHTML = buildModalBody(data);
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (window.MathJax) MathJax.typesetPromise([document.getElementById('modalBody')]);
+}
+
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === overlay) closeModal();
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+function buildModalBody(data) {
+  var html = '';
+  if (data.ask) {
+    html += '<div class="modal-section">';
+    html += '<div class="modal-section-title ask">&#9654; Εκφώνηση</div>';
+    html += '<p style="font-size:13px;line-height:1.7;color:var(--text2)">' + data.ask + '</p>';
+    html += '</div>';
+  }
+  if (data.sol) {
+    html += '<div class="modal-section">';
+    html += '<div class="modal-section-title sol">&#10003; Λύση</div>';
+    data.sol.forEach(function(block) {
+      if (block.type === 'math') {
+        html += '<div class="fb"><span class="math">\\[' + block.content + '\\]</span>';
+        if (block.desc) html += '<span class="desc">' + block.desc + '</span>';
+        html += '</div>';
+      } else if (block.type === 'text') {
+        html += '<p style="font-size:12px;color:var(--text2);margin:6px 0;line-height:1.6">' + block.content + '</p>';
+      }
+    });
+    html += '</div>';
+  }
+  if (data.int) {
+    html += '<div class="modal-section">';
+    html += '<div class="modal-section-title int">&#128270; Ερμηνεία</div>';
+    html += '<p style="font-size:12px;line-height:1.65;color:var(--text2)">' + data.int + '</p>';
+    html += '</div>';
+  }
+  return html;
+}
+
+// ─── EXAMPLES DATABASE ───
+// Τα παραδείγματα θα φορτώνονται από εξωτερικά αρχεία.
+// Αυτή η μεταβλητή θα συμπληρωθεί από το examples.js
+var EXAMPLES = {};
+
+// Load examples from external file if available
+(function() {
+  var s = document.createElement('script');
+  s.src = 'examples.js';
+  s.onerror = function() { console.log('examples.js not loaded yet'); };
+  document.head.appendChild(s);
+})();
 </script>
 </body>
 </html>
